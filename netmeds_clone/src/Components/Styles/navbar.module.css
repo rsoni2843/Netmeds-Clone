@@ -1,0 +1,13 @@
+.navbar{
+    border: 1px solid black;
+    background: #32aeb1;
+    padding-bottom: 16px; 
+}
+.logo{
+    margin: auto; 
+}
+/* .container{
+    margin: auto;
+    width: 75;
+
+} */

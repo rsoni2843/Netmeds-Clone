@@ -1,5 +1,4 @@
 import React from 'react'
-import {Box} from '@chakra-ui/react' ; 
 import {Routes,Route} from 'react-router-dom' ; 
 import Home from './Home' ; 
 import Login from './Login';
@@ -9,16 +8,16 @@ import Result from './Result';
 
 function AllRoutes() {
   return (
-    <Box>
+    <div>
         <Routes>
-            <Route to={'/'} element={<Home/>}/>
-            <Route to={'/checkout'} element={<Checkout/>}/>
-            <Route to={'/medicine'} element={<Medicine/>}/>
-            <Route to={'/medicine/:result'} element={<Result/>}/>
-            <Route to={'/Login'} element={<Login/>}/>
+            <Route path={'/'} element={<Home/>}/>
+            <Route path={'/checkout'} element={<Checkout/>}/>
+            <Route path={'/medicine'} element={<Medicine/>}/>
+            <Route path={'/medicine/:result'} element={<Result/>}/>
+            <Route path={'/Login'} element={<Login/>}/>
             
         </Routes>
-    </Box>
+    </div>
   )
 }
 

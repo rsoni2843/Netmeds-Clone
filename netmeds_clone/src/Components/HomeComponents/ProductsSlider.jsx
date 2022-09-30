@@ -5,7 +5,7 @@ import axios from 'axios'  ;
 // const apikey = `zMB0SbS5IFeqTk1B+Mu05HorvVodZID310bIls4VWFc=`
 const homeAPI =  'https://pharmeasy.in/apt-api/loyalty/fetchData?custom_token=home' ;
 
-// const med = `https://pharmeasy.in/_next/data/IBGIT3tmUVcOhdZMB2oVF/search/all.json?name=teniva`
+
 function ProductsSlider() {
    useEffect(()=>{
     fetch(homeAPI)

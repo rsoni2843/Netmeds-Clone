@@ -11,6 +11,7 @@ function Category() {
     useEffect(()=>{
         getHome()
         .then(res=>{
+            // console.log(res)
             setCategory(res.data.data.details.list)
         })
     },[])

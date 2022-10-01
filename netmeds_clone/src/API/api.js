@@ -10,8 +10,9 @@ const trendingAPI =
 // Most IMP API
 // https://pharmeasy.in/api/otc/getCategoryProducts?categoryId=8881
 
-// const medicineAPI =
-//   "https://pharmeasy.in/_next/data/IBGIT3tmUVcOhdZMB2oVF/search/all.json?name=teniva";
+const originNutrition = 'https://pharmeasy.in/api/otc/getCategoryProducts?categoryId=623'
+const medicineAPI =
+  "https://pharmeasy.in/apt-api/search/search";
 
 function getHome() {
   return axios.get(homeAPI);
@@ -25,7 +26,18 @@ function getTrending() {
 function getPrivate() {
   return axios.get(privateLabelAPI);
 }
-export { getHome, getOffer, getTrending, getPrivate };
+function getNutrition(){
+  return axios.get(originNutrition)
+}
+function getMedicine(data){
+  return axios.get(medicineAPI,{
+    params:{
+      q:data
+    }
+  })
+
+}
+export { getHome, getOffer, getTrending, getPrivate, getNutrition, getMedicine };
 
 // <Box w={'98%'} m={'auto'} mt={8}>
 //         <Text fontWeight={'bold'} fontSize={24} textAlign={'left'}>Payment Partner Offers</Text>

@@ -96,18 +96,20 @@ const logo =
         </Box>
         <Hide below="md">
           <Flex w={{ base: "95%", sm: "38%" }} className={styles.b3}>
-            <Box>
+            {/* <Box>
               <Icon as={RiFilePaper2Fill} />
               Upload
-            </Box>
+            </Box> */}
+            <Link to={'/cart'}>
             <Box>
               <Icon as={FaShoppingCart} />
               Cart
-            </Box>
+            </Box></Link>
+            <Link to={'/login'}>
             <Box>
               <Icon as={FaUserCircle} />
               Sign in / Sign up
-            </Box>
+            </Box></Link>
           </Flex>
         </Hide>
       </Stack>

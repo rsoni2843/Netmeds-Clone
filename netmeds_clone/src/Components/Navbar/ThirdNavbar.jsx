@@ -6,56 +6,56 @@ function ThirdNavbar() {
   const navData = [
     {
       page: "COVID Essentials",
-      path: "covid_essentials",
+      path: "/covid_essentials",
     },
     {
       page: "Diabetes",
-      path: "diabetes",
+      path: "/diabetes",
     },
     {
       page: "Eyewear",
-      path: "eyewear",
+      path: "/eyewear",
     },
     {
       page: "Ayush",
-      path: "ayush",
+      path: "/ayush",
     },
     {
       page: "Ayurvedic",
-      path: "ayurvedic",
+      path: "/ayurvedic",
     },
     {
       page: "Homeopathy",
-      path: "homeopathy",
+      path: "/homeopathy",
     },
     {
       page: "Fitness",
-      path: "fitness",
+      path: "/fitness",
     },
     {
       page: "Mom & Baby",
-      path: "mom&baby",
+      path: "/mom&baby",
     },
     {
       page: "Devices",
-      path: "health_devices",
+      path: "/health_devices",
     },
     {
       page: "Surgicals",
-      path: "surgicals",
+      path: "/surgicals",
     },
     {
       page: "Sexual Wellness",
-      path: "sexual_wellness",
+      path: "/sexual_wellness",
     },
     {
       page: "Treatments",
-      path: "treatment",
+      path: "/treatment",
     },
   ];
 
   return (
-    <Box bg={"white"}>
+    <Box pb={3} bg={'white'}>
       <Flex w={"78%"} m="auto" className={styles.secondNavContainer}>
         {navData.map((item, i) => {
           return (

@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { getPrivate } from '../../API/api'
 import { useState } from 'react';
 import styles from '../Styles/navbar.module.css' ; 
+import { Link } from 'react-router-dom';
 
 function ShopCategory() {
     const [shopCategory,setShopCategory] = useState([]) ; 
@@ -19,10 +20,10 @@ function ShopCategory() {
         <Text className={styles.leftHeading}>Shop by Category</Text>
         <Grid m={'auto'} mt={5} gap={4} w={'98%'} templateColumns={'repeat(5,1fr)'}>
             {shopCategory.slice(3,8).map((item)=>{
-                return <GridItem boxShadow={'md'} p={3} key={item.id}>
+                return <Link to={'/beauty'}><GridItem bg={'white'} boxShadow={'md'} p={3} key={item.id}>
                     <Image w={'70%'} m={'auto'} src={item.imageUrl}/>
                     <Text fontWeight={'bold'}>{item.name}</Text>
-                </GridItem>
+                </GridItem></Link>
             })}
         </Grid>
     </Box>
@@ -30,10 +31,10 @@ function ShopCategory() {
         <Text className={styles.leftHeading}>Personal Care</Text>
         <Grid m={'auto'} mt={5} gap={4} w={'98%'} templateColumns={'repeat(5,1fr)'}>
             {shopCategory.slice(9,14).map((item)=>{
-                return <GridItem boxShadow={'md'} p={3} key={item.id}>
+                return <Link to={'/mom&baby'}><GridItem bg={'white'} boxShadow={'md'} p={3} key={item.id}>
                     <Image w={'70%'} m={'auto'} src={item.imageUrl}/>
                     <Text fontWeight={'bold'}>{item.name}</Text>
-                </GridItem>
+                </GridItem></Link>
             })}
         </Grid>
     </Box>
@@ -41,14 +42,14 @@ function ShopCategory() {
         <Text className={styles.leftHeading}>Men's Grooming</Text>
         <Grid m={'auto'} mt={5} gap={4} w={'98%'} templateColumns={'repeat(5,1fr)'}>
             {shopCategory.slice(0,5).map((item)=>{
-                return <GridItem boxShadow={'md'} p={3} key={item.id}>
+                return <Link to={'/covid_essentials'}><GridItem bg={'white'} boxShadow={'md'} p={3} key={item.id}>
                     <Image w={'70%'} m={'auto'} src={item.imageUrl}/>
                     <Text fontWeight={'bold'}>{item.name}</Text>
-                </GridItem>
+                </GridItem></Link>
             })}
         </Grid>
     </Box>
-    <Flex w={'98%'} borderBottom={'1px solid rgba(11,18,25,.1)'} justifyContent={'space-between'}  m={'auto'} mt={5}>
+    <Flex bg={'white'} p={2} w={'96%'} borderBottom={'1px solid rgba(11,18,25,.1)'} justifyContent={'space-between'}  m={'auto'} mt={5}>
             <Flex  w={'30%'}>
                 <Image w={20} src={'https://www.netmeds.com/assets/gloryweb/images/icons/new-icons/subscribe_and_schedule.svg'}/>
                 <Box>
@@ -59,13 +60,14 @@ function ShopCategory() {
                     </ul>
                 </Box>
             </Flex>
+            <Link to={'/covid_essentials'}>
             <Button
             bg={"#24aeb1"}
             _hover={{ backgroundColor: "teal.500" }}
             p={2}
             mt={3}
             color="white"
-            >Subscribe</Button>
+            >Subscribe</Button></Link>
     </Flex>
     </Box>
   )

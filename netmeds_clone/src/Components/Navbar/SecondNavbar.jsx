@@ -5,8 +5,8 @@ import { NavLink } from "react-router-dom";
 import styles from "../Styles/navbar.module.css";
 const navData = [
   {
-    src: "https://www.iconpacks.net/icons/2/free-medicine-icon-3193-thumb.png",
-    bg: "red.700",
+    src: "https://www.netmeds.com/assets/gloryweb/images/icons/Wellnessnew.svg",
+    bg: "yellow.400",
     category: "Medicine",
     path: "/medicine",
   },
@@ -41,10 +41,10 @@ function SecondNavbar() {
       <Flex className={styles.secondNavContainer}>
         {navData.map((item, i) => {
           return (
-            <Box className={styles.secondNavContainerBox} key={i}>
+            <Box  className={styles.secondNavContainerBox} key={i}>
               <NavLink to={item.path}>
                 <Image src={item.src} bg={item.bg} />
-                <Text>{item.category}</Text>
+                <Text mr={4}>{item.category}</Text>
               </NavLink>
             </Box>
           );

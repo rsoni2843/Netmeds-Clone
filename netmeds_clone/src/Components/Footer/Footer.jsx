@@ -1,6 +1,6 @@
-import { Box, Flex, Hide, Image, Link, Show, Text } from '@chakra-ui/react'
+import { Box, Flex, Hide, Image,  Show, Text } from '@chakra-ui/react'
 import React from 'react'
-
+import {Link} from 'react-router-dom' ; 
 const logo =
   "https://www.netmeds.com/assets/gloryweb/images/netmeds-footer-logo.svg";
 
@@ -132,11 +132,11 @@ function Footer() {
     </Flex>
       <Hide below='sm'>
       <Flex fontSize={14} w={'84%'} m={'auto'} mt={3} textAlign='left' justifyContent={'space-between'}>
-          <Text color={'grey'}>Medicine</Text>              
-          <Text color={'grey'}>Wellness</Text>              
-          <Text color={'grey'}>Lab Tests</Text>              
-          <Text color={'grey'}>Beauty</Text>              
-          <Text color={'grey'}>Copyright© 2022. All Rights Reserved.</Text>              
+          <Link to={'/health'}><Text color={'grey'}>Medicine</Text> </Link>             
+          <Link to={'/fitness'}><Text color={'grey'}>Wellness</Text> </Link>             
+          <Link to={'/devices'}><Text color={'grey'}>Lab Tests</Text></Link>              
+          <Link to={'/beauty'}><Text color={'grey'}>Beauty</Text></Link>              
+          <Link to={'/'}><Text color={'grey'}>Copyright© 2022. All Rights Reserved.</Text></Link>              
       </Flex>
       </Hide>
       <Show below='sm'>

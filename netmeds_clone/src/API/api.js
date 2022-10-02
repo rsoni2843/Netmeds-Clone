@@ -11,7 +11,7 @@ const trendingAPI =
 // https://pharmeasy.in/api/otc/getCategoryProducts?categoryId=8881
 
 const originNutrition = 'https://pharmeasy.in/api/otc/getCategoryProducts?categoryId=623'
-const categoryAPI = 'https://pharmeasy.in/api/otc/getCategoryProducts'
+const categoryAPI = 'https://pharmeasy.in/api/otc/getCategoryProducts?perPage=30'
 const medicineAPI =
   "https://pharmeasy.in/apt-api/search/search";
 
@@ -31,17 +31,20 @@ function getNutrition(){
   return axios.get(originNutrition)
 }
 function getMedicine(data){
-  console.log(data)
+  
   return axios.get(medicineAPI,{
     params:{
       q:data
     }
   })
 }
-function getCategory(ep){
+function getCategory(ep,filter){
+  
   return axios.get(categoryAPI,{
     params:{
-      categoryId:ep
+      categoryId:ep,
+      sort:filter.sort,
+      direction:filter.direction,
     }
   })
   

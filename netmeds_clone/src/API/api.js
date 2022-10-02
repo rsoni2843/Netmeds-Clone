@@ -11,6 +11,7 @@ const trendingAPI =
 // https://pharmeasy.in/api/otc/getCategoryProducts?categoryId=8881
 
 const originNutrition = 'https://pharmeasy.in/api/otc/getCategoryProducts?categoryId=623'
+const categoryAPI = 'https://pharmeasy.in/api/otc/getCategoryProducts'
 const medicineAPI =
   "https://pharmeasy.in/apt-api/search/search";
 
@@ -30,14 +31,22 @@ function getNutrition(){
   return axios.get(originNutrition)
 }
 function getMedicine(data){
+  console.log(data)
   return axios.get(medicineAPI,{
     params:{
       q:data
     }
   })
-
 }
-export { getHome, getOffer, getTrending, getPrivate, getNutrition, getMedicine };
+function getCategory(ep){
+  return axios.get(categoryAPI,{
+    params:{
+      categoryId:ep
+    }
+  })
+  
+}
+export { getHome, getOffer, getTrending, getPrivate, getNutrition, getMedicine, getCategory };
 
 // <Box w={'98%'} m={'auto'} mt={8}>
 //         <Text fontWeight={'bold'} fontSize={24} textAlign={'left'}>Payment Partner Offers</Text>

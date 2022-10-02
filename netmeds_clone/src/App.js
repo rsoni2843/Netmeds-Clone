@@ -6,7 +6,7 @@ import AllRoutes from './Routes/AllRoutes';
 
 function App() {
   return (
-    <div className="App">
+    <div style={{backgroundColor:"#f3f3f3"}} className="App">
       <Navbar/>
       <AllRoutes/>
       <Footer/>

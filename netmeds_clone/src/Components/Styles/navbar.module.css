@@ -160,3 +160,37 @@
 /* .dealContainer {
   /* display: inline; */
 /* } */ 
+/* border={'1px solid black'} w={'40%'} display={'block'} boxSizing={'border-box'} bg={'white'} position={'absolute'} */
+
+.autocomplete{
+  border: 1px solid black;
+  position: absolute;
+  width: 50%;
+
+}
+.autoItems{
+  border-bottom: 1px solid #000;
+  padding: 10px 5px;
+  cursor: pointer;
+  color: dodgerblue;
+  font-weight: bold;
+}
+.allMain{
+  /* border: 1px solid black; */
+  width: 98%;
+  margin: auto;
+  gap: 20px;
+}
+.childDiv{
+  /* border: 1px solid black; */
+  padding: 5px;
+  text-align: left;
+  background: white;
+  
+  /* margin-left: 5px; */
+}
+/* w={'96%'} m='auto' p={2} ml={3} border={'1px solid black'} */
+.allGrid{
+  margin: auto;
+
+}

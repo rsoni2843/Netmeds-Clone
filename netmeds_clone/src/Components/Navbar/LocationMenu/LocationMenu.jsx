@@ -19,9 +19,9 @@ function LocationMenu() {
         </MenuButton>
         <MenuList>
           {/* MenuItems are not rendered unless Menu is open */}
-          <MenuItem>New Window</MenuItem>
+          {/* <MenuItem>New Window</MenuItem>
           <MenuItem>Open Closed Tab</MenuItem>
-          <MenuItem>Open File</MenuItem>
+          <MenuItem>Open File</MenuItem> */}
         </MenuList>
       </Menu>
     </Box>

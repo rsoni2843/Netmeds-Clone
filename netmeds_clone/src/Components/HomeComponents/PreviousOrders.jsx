@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Button, Flex, Icon, Image, Text } from "@chakra-ui/react";
 import styles from "../Styles/navbar.module.css";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
+import { Link } from "react-router-dom";
 function PreviousOrders() {
   return (
     <Box className={styles.newComponent}>
@@ -19,6 +20,7 @@ function PreviousOrders() {
             >
               Your previously ordered products
             </Text>
+            <Link to={'/login'}>
             <Text
               color={"#24aeb1"}
               fontWeight={"bold"}
@@ -39,7 +41,7 @@ function PreviousOrders() {
                 ml={12}
                 as={MdOutlineArrowForwardIos}
               />
-            </Text>
+            </Text></Link>
           </Box>
           <Box w={"30%"}>
             <Image
@@ -57,6 +59,7 @@ function PreviousOrders() {
             <Text fontWeight={"400"} color={"#5ba41c"}>
               Save Upto 40% off
             </Text>
+            <Link to={'/beauty'}>
             <Button
               bg={"#24aeb1"}
               _hover={{ backgroundColor: "teal.500" }}
@@ -67,7 +70,7 @@ function PreviousOrders() {
               mt={8}
             >
               Explore Beauty
-            </Button>
+            </Button></Link>
           </Box>
           <Box w={"30%"}>
             <Image

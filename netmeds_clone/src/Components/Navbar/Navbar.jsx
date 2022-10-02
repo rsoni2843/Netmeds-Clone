@@ -9,9 +9,9 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-
-import React, { useCallback, useEffect, useState } from "react";
 import styles from "../Styles/navbar.module.css";
+import React, { useContext,} from "react";
+// import styles from "../Styles/navbar.module.css";
 import { FaShoppingCart, FaUserCircle } from "react-icons/fa";
 import { RiFilePaper2Fill } from "react-icons/ri";
 import { AiOutlineSearch } from "react-icons/ai";
@@ -19,51 +19,18 @@ import { AiOutlineSearch } from "react-icons/ai";
 import LocationMenu from "./LocationMenu/LocationMenu";
 import SecondNavbar from "./SecondNavbar";
 import ThirdNavbar from "./ThirdNavbar";
-import { getMedicine } from "../../API/api";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import {AppContext} from "../../Context/AppContext";
 const logo =
   "https://nms-assets.s3-ap-south-1.amazonaws.com/images/cms/aw_rbslider/slides/1663609483_netmeds-new-logo.svg";
-function Navbar() {
-  const navigate = useNavigate() ; 
-  const [data,setData] = useState('') ; 
-  // const [medicine,setMedicine] = useState([]) ; 
-  const handleKeyDown = (e)=>{
-    if(e.key === "Enter"){
-      e.preventDefault() ; 
-      setData(data)
-      navigate('/medicine')
-    }
+  function Navbar() {
+  const navigate = useNavigate() ;
+  const {handleChange,main} = useContext(AppContext) ;
+  const onChange = (e)=>{
+    handleChange(e.target.value)
+    navigate('/medicine')
   }
-  const debounce = (func) => {
-    let timer;
-    return function (...args) {
-      const context = this;
-      if (timer) clearTimeout(timer);
-      timer = setTimeout(() => {
-        timer = null;
-        func.apply(context, args);
-      }, 2000);
-    };
-  };
-  // useEffect(()=>{
-    
-  //     getMedicine(data)
-  //     .then(res=>{
-  //       // console.log(res) ;
-  //       setMedicine(res) 
-  //     })
-  //     .catch(err=>{console.log(err)})
-    
-    
-    
-  // },[data])
-  const handleChange = (val) =>{
-    getMedicine(val)
-    .then(res=>setData(res.data.data.products))
-  }
-  const optFn = useCallback(debounce(handleChange),[]);
-  console.log(data)
-
+  // const data = main?.data?.data?.products
   return (
     <Box bg={"#32aeb1"}>
       <Stack
@@ -73,48 +40,60 @@ function Navbar() {
         direction={{ base: "column", sm: "row" }}
       >
         <Box w={{ base: "95%", sm: "20%" }} className={styles.b1}>
-          <Image
-            width={{ base: "100px", sm: "155px" }}
-            src={logo}
-            alt={"NetMeds"}
-          />
+          <Link to={"/"}>
+            <Image
+              width={{ base: "100px", sm: "155px" }}
+              src={logo}
+              alt={"NetMeds"}
+            />
+          </Link>
         </Box>
+
         <Box w={{ base: "95%", sm: "70%" }} className={styles.b2}>
-        <Box >
-          <Flex>
-            <Hide below="md">
-              <Box className={styles.locationBox}>
-                Deliver to
-                <LocationMenu />
+          <Box>
+            <Flex>
+              <Hide below="md">
+                <Box className={styles.locationBox}>
+                  Deliver to
+                  <LocationMenu />
+                </Box>
+              </Hide>
+              <Box
+                className={styles.inputContainer}
+                w={{ base: "100%", lg: "90%" }}
+              >
+                <Input
+                  variant={"unstyled"}
+                  _active={{ border: "none", outline: "none" }}
+                  border={"none"}
+                  outline={"0"}
+                  w={{ base: "100%", md: "90%" }}
+                  h={{ base: "25px", md: "30px", lg: "40px" }}
+                  ml={{ base: null, md: 5 }}
+                  placeholder={"Search for medicines & wellness products..."}
+                  onChange={onChange}
+
+                />
+                <Show below="sm">
+                  <Icon fontWeight={"bold"} as={AiOutlineSearch} />
+                </Show>
               </Box>
-            </Hide>
-            <Box className={styles.inputContainer}  w={{base:'100%',lg:'90%'}}>
-              <Input variant={'unstyled'} _active={{border:'none',outline:'none'}} border={'none'} outline={'0'} w={{base:'100%',md:'90%'}} h={{base:'25px',md:'30px',lg:'40px'}}
-                ml={{base:null,md:5}} placeholder={"Search for medicines & wellness products..."}
-                onChange={e=>optFn(e.target.value)}
-                name='data'
-                id='data'
-                onKeyDown={handleKeyDown}
-              />
-              <Show below='sm'><Icon fontWeight={'bold'} as={AiOutlineSearch}/></Show>
-              
-            </Box>
-          </Flex>
-          
-        </Box>
-        {/* <Box border={'1px solid black'} w={'40%'} display={'block'} boxSizing={'border-box'} bg={'white'} position={'absolute'}>
+            </Flex>
+          </Box>
+          {/* {data?.length>0 &&
+        <Box style={data?{display:"inline"}:{display:'none'}} bg='white' className={styles.autocomplete} >
         {data && data.map((item,i)=>{
-          return <Text key={i}>{item.name}</Text>
+          return <Text className={styles.autoItems} key={i}>{item.name}</Text>
         })}
-        </Box> */}
-        {/* <Box border={'1px solid black'} w={'40%'} display={'block'} boxSizing={'border-box'} bg={'white'} position={'absolute'}>
+        </Box>} */}
+          {/* <Box border={'1px solid black'} w={'40%'} display={'block'} boxSizing={'border-box'} bg={'white'} position={'absolute'}>
             <Text>AJAJJAJAJA</Text>
             <Text>AJAJJAJAJA</Text>
             <Text>AJAJJAJAJA</Text>
             <Text>AJAJJAJAJA</Text>
             <Text>AJAJJAJAJA</Text>
           </Box> */}
-          </Box>
+        </Box>
         <Hide below="md">
           <Flex w={{ base: "95%", sm: "38%" }} className={styles.b3}>
             <Box>
@@ -136,7 +115,7 @@ function Navbar() {
         <SecondNavbar />
         <ThirdNavbar />
       </Hide>
-
+      {/* <MedicinePage data={main}/> */}
       {/* <Image w={10} bg={'teal'} src={'https://www.iconpacks.net/icons/2/free-medicine-icon-3193-thumb.png'}/> */}
     </Box>
   );

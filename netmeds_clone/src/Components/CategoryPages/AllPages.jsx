@@ -8,6 +8,7 @@ import {
   GridItem,
   Hide,
   Image,
+  Skeleton,
   Stack,
   Tag,
   TagLabel,
@@ -20,6 +21,7 @@ import { useSearchParams } from "react-router-dom";
 function AllPages({ ep }) {
   const [data, setData] = useState([]);
   // const [pd,setPd] = useState([]) ; 
+  const [loading,setLoading] = useState(false) ; 
 
   const [filter, setFilter] = useState({ sort: "", direction: "" });
   const [searchParams,setSearchParams] = useSearchParams() ; 
@@ -27,13 +29,16 @@ function AllPages({ ep }) {
   const [page,setPage] = useState(initPage)  ; 
   
   useEffect(() => {
+    // setLoading(true)
     handleData();
   }, [filter]);
   function handleData() {
-    getCategory(ep, filter).then((res) => {
-      setData(res?.data?.data.products);
-      // console.log(res)
-    });
+    setLoading(true)
+        getCategory(ep, filter).then((res) => {
+          setLoading(false)
+        setData(res?.data?.data.products);
+    })
+    .finally(()=>setLoading(false))
   }
   useEffect(()=>{
     setSearchParams({...filter,page})
@@ -41,11 +46,12 @@ function AllPages({ ep }) {
 
   return (
     <Box className={styles.allMain}>
-      
+      {/* <Skeleton> */}
       <Flex>
         <Hide below="md">
           <Box className={styles.childDiv} w={"23%"}></Box>
         </Hide>
+        
         <Box className={styles.childDiv} w={{ base: "100%", md: "77%" }}>
           <Flex >
             <Hide below="sm">
@@ -126,7 +132,13 @@ function AllPages({ ep }) {
             }}
           >
             {data?.map((item) => {
-              return (
+             return (loading?<Skeleton h={'200px'} bg={'blue.500'} fadeDuration={10}>
+                    <Box>
+                      ABBABABAB
+                    </Box>
+              </Skeleton>:
+              
+                
                 <GridItem
                   w={"95%"}
                   m={"auto"}
@@ -201,6 +213,7 @@ function AllPages({ ep }) {
             })}
           </Grid>
         </Box>
+        
       </Flex>
 
     </Box>

@@ -9,11 +9,14 @@ const trendingAPI =
 // Medicine API
 // Most IMP API
 // https://pharmeasy.in/api/otc/getCategoryProducts?categoryId=8881
-
+//Pass Slug in this...
+// cosnt medicineSingle = 'https://pharmeasy.in/_next/data/qYxVua9M7GiAxOqrKT_hY/online-medicine-order/teniva-m-tablet-20-s-235086.json?medicineSlug=teniva-m-tablet-20-s-235086'
 const originNutrition = 'https://pharmeasy.in/api/otc/getCategoryProducts?categoryId=623'
 const categoryAPI = 'https://pharmeasy.in/api/otc/getCategoryProducts?perPage=30'
 const medicineAPI =
   "https://pharmeasy.in/apt-api/search/search";
+
+// const AppoloSinglePageAPI = 'https://www.apollopharmacy.in/_next/data/1663862427240/medicine/teniva-m-forte-tablet-20-s.json?doNotTrack=true&sku=teniva-m-forte-tablet-20-s'
 
 function getHome() {
   return axios.get(homeAPI);
@@ -49,7 +52,14 @@ function getCategory(ep,filter){
   })
   
 }
-export { getHome, getOffer, getTrending, getPrivate, getNutrition, getMedicine, getCategory };
+function getMedicineApollo(data){
+  return axios.get("https://search.sastasundar.com/search_list?token=oo7lio7l4o7l6o7l9o7looi",{
+    params:{
+      q:data
+    }
+  })
+}
+export { getMedicineApollo, getHome, getOffer, getTrending, getPrivate, getNutrition, getMedicine, getCategory };
 
 // <Box w={'98%'} m={'auto'} mt={8}>
 //         <Text fontWeight={'bold'} fontSize={24} textAlign={'left'}>Payment Partner Offers</Text>

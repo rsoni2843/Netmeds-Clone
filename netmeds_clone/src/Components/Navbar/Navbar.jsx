@@ -2,6 +2,7 @@ import {
   Alert,
   AlertIcon,
   Box,
+  Button,
   CloseButton,
   Flex,
   Hide,
@@ -16,7 +17,7 @@ import styles from "../Styles/navbar.module.css";
 import React, { useContext, useEffect, useState } from "react";
 // import styles from "../Styles/navbar.module.css";
 import { FaShoppingCart, FaUserCircle } from "react-icons/fa";
-import { RiFilePaper2Fill } from "react-icons/ri";
+// import { RiFilePaper2Fill } from "react-icons/ri";
 import { AiOutlineSearch } from "react-icons/ai";
 
 import LocationMenu from "./LocationMenu/LocationMenu";
@@ -37,28 +38,51 @@ function Navbar() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setCors(false);
-    }, 200000);
+    }, 20000);
     return () => {
       clearTimeout(timer);
     };
   }, []);
-  console.log(cors);
+  // console.log(cors);
   return (
     <Box bg={"#32aeb1"}>
       {cors ? (
-        <Alert status="info">
-          <AlertIcon />
+        <Alert
+          fontWeight={"500"}
+          fontSize={{base:10,md:16,}}
+          color={"white"}
+          bg={"pink.400"}
+          status="info"
+        >
+          <AlertIcon color={"white"} />
           <Flex
             w={"100%"}
             justifyContent={"space-between"}
             alignItems={"center"}
-            border={"1px solid"}
           >
-            <Text textAlign={"left"}>
-              Chakra is going live on August 30th. Get ready!
+            <Text className={styles.AlertComponent} textAlign={"left"}>
+              Download and enable this CORS extension if data is not showing.{" "}
+              <a
+                href="https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en"
+                target="blank"
+              >
+                <Button
+                  bg={"white"}
+                  p={1}
+                  _hover={{ bg: "black", color: "white" }}
+                  color={"black"}
+                  size={"sm"}
+                >
+                  Click Here
+                </Button>
+              </a>
             </Text>
             <Text>
-              <CloseButton />
+              <CloseButton
+                onClick={() => setCors(false)}
+                _hover={{ bg: "black", color: "white" }}
+                rounded={"50%"}
+              />
             </Text>
           </Flex>
         </Alert>

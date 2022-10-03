@@ -38,7 +38,7 @@ function ThirdNavbar() {
     },
     {
       page: "Devices",
-      path: "/health_devices",
+      path: "devices",
     },
     {
       page: "Surgicals",

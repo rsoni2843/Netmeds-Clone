@@ -1,5 +1,8 @@
 import {
+  Alert,
+  AlertIcon,
   Box,
+  CloseButton,
   Flex,
   Hide,
   Icon,
@@ -10,7 +13,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import styles from "../Styles/navbar.module.css";
-import React, { useContext,} from "react";
+import React, { useContext, useEffect, useState } from "react";
 // import styles from "../Styles/navbar.module.css";
 import { FaShoppingCart, FaUserCircle } from "react-icons/fa";
 import { RiFilePaper2Fill } from "react-icons/ri";
@@ -20,19 +23,46 @@ import LocationMenu from "./LocationMenu/LocationMenu";
 import SecondNavbar from "./SecondNavbar";
 import ThirdNavbar from "./ThirdNavbar";
 import { Link, useNavigate } from "react-router-dom";
-import {AppContext} from "../../Context/AppContext";
+import { AppContext } from "../../Context/AppContext";
 const logo =
   "https://nms-assets.s3-ap-south-1.amazonaws.com/images/cms/aw_rbslider/slides/1663609483_netmeds-new-logo.svg";
-  function Navbar() {
-  const navigate = useNavigate() ;
-  const {handleChange,main} = useContext(AppContext) ;
-  const onChange = (e)=>{
-    handleChange(e.target.value)
-    navigate('/medicine')
-  }
-  // const data = main?.data?.data?.products
+function Navbar() {
+  const [cors, setCors] = useState(true);
+  const navigate = useNavigate();
+  const { handleChange } = useContext(AppContext);
+  const onChange = (e) => {
+    handleChange(e.target.value);
+    navigate("/medicine");
+  };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCors(false);
+    }, 200000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+  console.log(cors);
   return (
     <Box bg={"#32aeb1"}>
+      {cors ? (
+        <Alert status="info">
+          <AlertIcon />
+          <Flex
+            w={"100%"}
+            justifyContent={"space-between"}
+            alignItems={"center"}
+            border={"1px solid"}
+          >
+            <Text textAlign={"left"}>
+              Chakra is going live on August 30th. Get ready!
+            </Text>
+            <Text>
+              <CloseButton />
+            </Text>
+          </Flex>
+        </Alert>
+      ) : null}
       <Stack
         pb={4}
         bg={"#32aeb1"}
@@ -72,7 +102,6 @@ const logo =
                   ml={{ base: null, md: 5 }}
                   placeholder={"Search for medicines & wellness products..."}
                   onChange={onChange}
-
                 />
                 <Show below="sm">
                   <Icon fontWeight={"bold"} as={AiOutlineSearch} />
@@ -100,16 +129,18 @@ const logo =
               <Icon as={RiFilePaper2Fill} />
               Upload
             </Box> */}
-            <Link to={'/cart'}>
-            <Box>
-              <Icon as={FaShoppingCart} />
-              Cart
-            </Box></Link>
-            <Link to={'/login'}>
-            <Box>
-              <Icon as={FaUserCircle} />
-              Sign in / Sign up
-            </Box></Link>
+            <Link to={"/cart"}>
+              <Box>
+                <Icon as={FaShoppingCart} />
+                Cart
+              </Box>
+            </Link>
+            <Link to={"/login"}>
+              <Box>
+                <Icon as={FaUserCircle} />
+                Sign in / Sign up
+              </Box>
+            </Link>
           </Flex>
         </Hide>
       </Stack>

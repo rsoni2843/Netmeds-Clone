@@ -19,8 +19,8 @@ function ShopCategory() {
     <Box w={'98%'} m={'auto'} mt={'280px'}>
         <Text className={styles.leftHeading}>Shop by Category</Text>
         <Grid m={'auto'} mt={5} gap={4} w={'98%'} templateColumns={'repeat(5,1fr)'}>
-            {shopCategory.slice(3,8).map((item)=>{
-                return <Link to={'/beauty'}><GridItem bg={'white'} boxShadow={'md'} p={3} key={item.id}>
+            {shopCategory.slice(3,8).map((item,i)=>{
+                return <Link key={i} to={'/beauty'}><GridItem bg={'white'} boxShadow={'md'} p={3} key={item.id}>
                     <Image w={'70%'} m={'auto'} src={item.imageUrl}/>
                     <Text fontWeight={'bold'}>{item.name}</Text>
                 </GridItem></Link>
@@ -30,8 +30,8 @@ function ShopCategory() {
     <Box w={'98%'} m={'auto'} mt={'30px'}>
         <Text className={styles.leftHeading}>Personal Care</Text>
         <Grid m={'auto'} mt={5} gap={4} w={'98%'} templateColumns={'repeat(5,1fr)'}>
-            {shopCategory.slice(9,14).map((item)=>{
-                return <Link to={'/mom&baby'}><GridItem bg={'white'} boxShadow={'md'} p={3} key={item.id}>
+            {shopCategory.slice(9,14).map((item,i)=>{
+                return <Link  key={i} to={'/mom&baby'}><GridItem bg={'white'} boxShadow={'md'} p={3} key={item.id}>
                     <Image w={'70%'} m={'auto'} src={item.imageUrl}/>
                     <Text fontWeight={'bold'}>{item.name}</Text>
                 </GridItem></Link>
@@ -41,8 +41,8 @@ function ShopCategory() {
     <Box w={'98%'} m={'auto'} mt={'30px'}>
         <Text className={styles.leftHeading}>Men's Grooming</Text>
         <Grid m={'auto'} mt={5} gap={4} w={'98%'} templateColumns={'repeat(5,1fr)'}>
-            {shopCategory.slice(0,5).map((item)=>{
-                return <Link to={'/covid_essentials'}><GridItem bg={'white'} boxShadow={'md'} p={3} key={item.id}>
+            {shopCategory.slice(0,5).map((item,i)=>{
+                return <Link key={i} to={'/covid_essentials'}><GridItem bg={'white'} boxShadow={'md'} p={3} key={item.id}>
                     <Image w={'70%'} m={'auto'} src={item.imageUrl}/>
                     <Text fontWeight={'bold'}>{item.name}</Text>
                 </GridItem></Link>

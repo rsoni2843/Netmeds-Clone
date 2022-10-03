@@ -2,7 +2,9 @@ import React from 'react'
 
 function Result() {
   return (
-    <div>Result</div>
+    <div>
+      <h1>LOGIN</h1>
+    </div>
   )
 }
 

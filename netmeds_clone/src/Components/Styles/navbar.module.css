@@ -73,7 +73,7 @@
 .secondNavContainerBox img {
   margin-right: 14px;
   border-radius: 50%;
-  padding: 4px;
+  
   width: 50px;
 }
 .inputContainer {
@@ -215,9 +215,12 @@ variant={"subtle"} */
 .filterButtons:hover{
   color: teal;
   border: 1px solid #24aeb1;
-  /* font-weight: 400; */
 }
-/* .filterButtons:hover{
-  color: "teal";
-  border: "1px solid red"
-} */
+.AlertComponent a{
+  margin-left: 8px;
+}
+.AlertComponent a:hover{
+  text-decoration: underline;
+  color: black;
+  
+}

@@ -5,31 +5,31 @@ import { NavLink } from "react-router-dom";
 import styles from "../Styles/navbar.module.css";
 const navData = [
   {
-    src: "https://www.netmeds.com/assets/gloryweb/images/icons/Wellnessnew.svg",
+    src: "https://www.netmeds.com/assets/version1663621997/gloryweb/images/icons/medicine.svg",
     bg: "yellow.400",
     category: "Medicine",
     path: "/medicine",
   },
   {
-    src: "https://cdn.pixabay.com/photo/2020/12/09/16/40/medical-5817909_1280.png",
+    src: "https://www.netmeds.com/assets/gloryweb/images/icons/wellness.svg",
     bg: "pink.200",
     category: "Wellenss",
     path: "/fitness",
   },
   {
-    src: "https://cdn-icons-png.flaticon.com/512/263/263032.png",
+    src: "https://www.netmeds.com/assets/gloryweb/images/icons/diagnostics.svg",
     bg: "cyan.300",
     category: "Lab Tests",
     path: "/devices",
   },
   {
-    src: "https://cdn-icons-png.flaticon.com/512/2798/2798003.png",
+    src: "https://www.netmeds.com/assets/gloryweb/images/icons/beauty.svg",
     bg: "orange.300",
     category: "Beauty",
     path: "/beauty",
   },
   {
-    src: "https://brisdoc.co.uk/wp-content/uploads/2020/12/Health-Icon-1.svg",
+    src: "https://www.netmeds.com/assets/version1663621997/gloryweb/images/icons/health-library.svg",
     bg: "teal.600",
     category: "Health Corner",
     path: "/fitness",

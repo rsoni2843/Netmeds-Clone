@@ -11,9 +11,9 @@ import React from "react";
 
 function LocationMenu() {
   return (
-    <Box>
+    < >
       <Menu isLazy>
-        <MenuButton>
+        <MenuButton color={'teal'} fontWeight={600}>
           226021
           <ChevronDownIcon />
         </MenuButton>
@@ -24,7 +24,7 @@ function LocationMenu() {
           <MenuItem>Open File</MenuItem> */}
         </MenuList>
       </Menu>
-    </Box>
+    </>
   );
 }
 

@@ -41,7 +41,7 @@ function SecondNavbar() {
       <Flex className={styles.secondNavContainer}>
         {navData.map((item, i) => {
           return (
-            <Box  className={styles.secondNavContainerBox} key={i}>
+            <Box className={styles.secondNavContainerBox} key={i}>
               <NavLink to={item.path}>
                 <Image src={item.src} bg={item.bg} />
                 <Text mr={4}>{item.category}</Text>

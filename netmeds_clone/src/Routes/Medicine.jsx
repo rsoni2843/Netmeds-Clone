@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { getMedicine } from '../API/api'
-import MedicinePage from '../Components/MedicinePage/MedicinePage'
+import React, { useEffect, useState } from "react";
+import { getMedicine } from "../API/api";
+import MedicinePage from "../Components/MedicinePage/MedicinePage";
 
-function Medicine({data}) {
-  
+function Medicine({ data }) {
   // console.log(data)
   // const [med,setMed]  = useState([]) ;
   // const prop
@@ -12,7 +11,7 @@ function Medicine({data}) {
   //   setMed(data)
   // },[data])
   // console.log(med)
-  // const [data,setData] = useState([]) ; 
+  // const [data,setData] = useState([]) ;
 
   // useEffect(()=>{
   //   getMedicine()
@@ -23,9 +22,9 @@ function Medicine({data}) {
   // console.log(data)
   return (
     <div>
-      <MedicinePage/>
+      <MedicinePage />
     </div>
-  )
+  );
 }
 
-export default Medicine
+export default Medicine;

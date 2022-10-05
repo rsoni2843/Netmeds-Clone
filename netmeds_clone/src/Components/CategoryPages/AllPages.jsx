@@ -84,7 +84,7 @@ function AllPages({ ep }) {
               <Tag
                 className={styles.filterButtons}
                 onClick={() =>
-                  setFilter({ sort: "popularity", direction: "1" })
+                  setFilter({ sort: "popularity", direction: 1 })
                 }
                 fontWeight={400}
                 size={"sm"}
@@ -94,7 +94,7 @@ function AllPages({ ep }) {
               </Tag>
               <Tag
                 className={styles.filterButtons}
-                onClick={() => setFilter({ sort: "price", direction: "0" })}
+                onClick={() => setFilter({ sort: "price", direction:0 })}
                 size={"sm"}
                 fontWeight={400}
                 variant={"subtle"}
@@ -102,7 +102,7 @@ function AllPages({ ep }) {
                 <TagLabel>Low to High</TagLabel>
               </Tag>
               <Tag
-                onClick={() => setFilter({ sort: "price", direction: "1" })}
+                onClick={() => setFilter({ sort: "price", direction: 1 })}
                 size={"sm"}
                 fontWeight={400}
                 className={styles.filterButtons}
@@ -111,7 +111,7 @@ function AllPages({ ep }) {
                 <TagLabel>High to Low</TagLabel>
               </Tag>
               <Tag
-                onClick={() => setFilter({ sort: "discount", direction: "1" })}
+                onClick={() => setFilter({ sort: "discount", direction: 1 })}
                 size={"sm"}
                 fontWeight={400}
                 className={styles.filterButtons}
@@ -151,12 +151,19 @@ function AllPages({ ep }) {
                   <Badge variant="solid" fontSize={10} bg="#84be52">
                     {item.discountPercent + "%"}
                   </Badge>
+                  {!item.images?<Image 
+                  w={{ base: "50%" }}
+                  m={"auto"}
+                  rounded={'50%'}
+                  // h={{ base: "100px" }}
+                  minH={'140px'}
+                  src={'https://www.netmeds.com/images/product-v1/75x75/formulation_based/creams.jpg'}/>:
                   <Image
                     w={{ base: "30%" }}
                     m={"auto"}
                     h={{ base: "140px" }}
                     src={item.images[0]}
-                  />
+                  />}
                   <Box w={"95%"} m={"auto"}>
                     <Text
                       color={"#151b39"}

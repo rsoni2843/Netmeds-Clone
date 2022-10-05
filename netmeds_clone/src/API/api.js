@@ -36,6 +36,7 @@ function getMedicine(data){
   })
 }
 function getCategory(ep,filter){
+  console.log(filter)
   return fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(`https://pharmeasy.in/api/otc/getCategoryProducts?perPage=30&categoryId=${ep}&sort=${filter.sort}&direction=${filter.direction}`)}`)
   .then(res=>{return res.json()})
 }

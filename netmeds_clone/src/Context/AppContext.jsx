@@ -13,14 +13,9 @@ function AppContextProvider({ children }) {
   const handleChange = debounce((value) => {
     getMedicineApollo(value).then((res) => setMain(res));
   }, 2000);
-  // React.useEffect(()=>{
-  //   getMedicineApollo()
-  //   .then(res=>{
-  //     console.log(res)
-  //   })
-  // },[])
+  
   return (
-    <AppContext.Provider value={{ handleChange, main }}>
+    <AppContext.Provider value={{ handleChange, main, setMain }}>
       {children}
     </AppContext.Provider>
   );

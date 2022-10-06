@@ -32,14 +32,31 @@ function MedicinePage() {
   useEffect(() => {
     setSearchParams({ name });
   }, [name, setSearchParams]);
-  // console.log(med[0][11])
+  console.log(med);
   // console.log(main)
+  if (!med) {
+    return (
+      <Box m={"auto"}>
+        {/* <Text>Nothing Found</Text> */}
+        <Image
+          m={"auto"}
+          src={
+            "https://www.netmeds.com/assets/version1663621997/gloryweb/images/icons/no_search.png"
+          }
+        />
+        <Text color={"grey"} fontSize={12}>
+          Sorry! No Products Found
+        </Text>
+      </Box>
+    );
+  }
   return (
     <Box w={{ base: "96%", md: "75%" }} m={"auto"} bg={"white"}>
       <Text fontSize={14} p={2} mt={3} color={"grey"} textAlign={"left"}>
         Showing results for <b>{name}</b>
       </Text>
       <Stack w={"100%"} m={"auto"} direction={{ base: "column", md: "row" }}>
+        {}
         <Box p={4} w={{ base: "100%", md: "70%" }}>
           {med?.map((item, i) => {
             return (

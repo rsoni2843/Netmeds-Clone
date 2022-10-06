@@ -2,19 +2,26 @@ import { Box, Hide } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import SecondNavbar from "./SecondNavbar";
 import ThirdNavbar from "./ThirdNavbar";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../Context/AppContext";
 import CorsError from "./CorsError";
 import FirstNavbar from "./FirstNavbar";
 
 function Navbar() {
   const [cors, setCors] = useState(true);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { handleChange,main } = useContext(AppContext);
   const onChange = (e) => {
     handleChange(e.target.value);
-    navigate("/medicine");
   };
+  // const onEnter = (e)=>{
+  //   // handleChange()
+  //   handleChange(e.target.value) ; 
+  //   if(e.key === "Enter"){
+  //     e.preventDefault() ;
+  //     navigate('/medicine')
+  //   }
+  // }
   useEffect(() => {
     const timer = setTimeout(() => {
       setCors(false);

@@ -47,12 +47,14 @@ function Slider() {
         {sliderImages.map((item, i) => {
           return (
             <Link key={i} to={item.path}>
-              <Box ><Image
-              mt={10}
-              h={{ base: "100px", md: "200px", lg: "300px" }}
-              key={i}
-              src={item.image}
-            /></Box>
+              <Box>
+                <Image
+                  mt={10}
+                  h={{ base: "100px", md: "200px", lg: "300px" }}
+                  key={i}
+                  src={item.image}
+                />
+              </Box>
             </Link>
           );
         })}

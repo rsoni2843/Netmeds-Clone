@@ -50,14 +50,7 @@ function LimitedTimeDeal() {
             View All <MdOutlineArrowForwardIos />
           </Text>
         </Flex>
-        <Box
-          
-          zIndex={1}
-          position={"absolute"}
-          w={"98%"}
-          m={"auto"}
-          mt={10}
-        >
+        <Box zIndex={1} position={"absolute"} w={"98%"} m={"auto"} mt={10}>
           <Carousel
             infinite={true}
             autoPlay={true}
@@ -81,7 +74,12 @@ function LimitedTimeDeal() {
                   borderRadius={20}
                 >
                   <Image w={"80%"} m={"auto"} src={item.imageUrl} />
-                  <Text color={'black'} fontWeight={600} fontSize={"19px"} ml={4}>
+                  <Text
+                    color={"black"}
+                    fontWeight={600}
+                    fontSize={"19px"}
+                    ml={4}
+                  >
                     {item.name}
                   </Text>
                   <Text mt={3} fontWeight={500} color={"#5ba41c"} ml={4}>

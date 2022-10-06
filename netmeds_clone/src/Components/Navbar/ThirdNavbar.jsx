@@ -55,7 +55,7 @@ function ThirdNavbar() {
   ];
 
   return (
-    <Box pb={3} bg={'white'}>
+    <Box pb={3} bg={"white"}>
       <Flex w={"78%"} m="auto" className={styles.secondNavContainer}>
         {navData.map((item, i) => {
           return (

@@ -22,6 +22,11 @@
   justify-content: space-around;
   width: 25%;
 }
+.b1{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .b2 {
   border-radius: 8px;
   background-color: white;
@@ -37,9 +42,9 @@
   justify-content: space-evenly;
   /* margin-left: 50px; */
   padding-left: 15px;
-  height: 90px;
+  /* height: 90px; */
   align-items: center;
-  display: inline-block;
+  /* display: inline-block; */
   /* border: 1px solid white; */
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 16px;
@@ -73,7 +78,7 @@
 .secondNavContainerBox img {
   margin-right: 14px;
   border-radius: 50%;
-  
+
   width: 50px;
 }
 .inputContainer {
@@ -159,40 +164,38 @@
 }
 /* .dealContainer {
   /* display: inline; */
-/* } */ 
+/* } */
 /* border={'1px solid black'} w={'40%'} display={'block'} boxSizing={'border-box'} bg={'white'} position={'absolute'} */
 
-.autocomplete{
+.autocomplete {
   border: 1px solid black;
   position: absolute;
   width: 50%;
-
 }
-.autoItems{
+.autoItems {
   border-bottom: 1px solid #000;
   padding: 10px 5px;
   cursor: pointer;
   color: dodgerblue;
   font-weight: bold;
 }
-.allMain{
+.allMain {
   /* border: 1px solid black; */
   width: 98%;
   margin: auto;
   gap: 20px;
 }
-.childDiv{
+.childDiv {
   /* border: 1px solid black; */
   padding: 5px;
   text-align: left;
   background: white;
-  
+
   /* margin-left: 5px; */
 }
 /* w={'96%'} m='auto' p={2} ml={3} border={'1px solid black'} */
-.allGrid{
+.allGrid {
   margin: auto;
-
 }
 /* cursor={"pointer"}
 onClick={() => setFilter({ sort: "price", direction: "0" })}
@@ -204,23 +207,21 @@ border={"1px solid #24aeb1"}
 color={"#24aeb1"}
 
 variant={"subtle"} */
-.filterButtons{
-  
+.filterButtons {
   /* border:1px solid #24aeb1 ;  */
   cursor: pointer;
-  color:#24aeb1;
-  font-weight:200;
+  color: #24aeb1;
+  font-weight: 200;
   /* padding:0 20px 0 20px; */
 }
-.filterButtons:hover{
+.filterButtons:hover {
   color: teal;
   border: 1px solid #24aeb1;
 }
-.AlertComponent a{
+.AlertComponent a {
   margin-left: 8px;
 }
-.AlertComponent a:hover{
+.AlertComponent a:hover {
   text-decoration: underline;
   color: black;
-  
 }

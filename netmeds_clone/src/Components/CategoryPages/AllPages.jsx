@@ -20,29 +20,30 @@ import { useSearchParams } from "react-router-dom";
 
 function AllPages({ ep }) {
   const [data, setData] = useState([]);
-  // const [pd,setPd] = useState([]) ; 
-  const [loading,setLoading] = useState(false) ; 
+  // const [pd,setPd] = useState([]) ;
+  const [loading, setLoading] = useState(false);
 
   const [filter, setFilter] = useState({ sort: "", direction: "" });
-  const [searchParams,setSearchParams] = useSearchParams() ; 
-  const initPage = Number(searchParams.get("page")||1) ; 
-  const [page,setPage] = useState(initPage)  ; 
-  
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initPage = Number(searchParams.get("page") || 1);
+  const [page, setPage] = useState(initPage);
+
   useEffect(() => {
     // setLoading(true)
     handleData();
   }, [filter]);
   function handleData() {
-    setLoading(true)
-        getCategory(ep, filter).then((res) => {
-          setLoading(false)
-        setData(res?.data?.data.products);
-    })
-    .finally(()=>setLoading(false))
+    setLoading(true);
+    getCategory(ep, filter)
+      .then((res) => {
+        setLoading(false);
+        setData(res?.data.products);
+      })
+      .finally(() => setLoading(false));
   }
-  useEffect(()=>{
-    setSearchParams({...filter,page})
-  },[page,filter,setSearchParams])
+  useEffect(() => {
+    setSearchParams({ ...filter, page });
+  }, [page, filter, setSearchParams]);
 
   return (
     <Box className={styles.allMain}>
@@ -51,48 +52,49 @@ function AllPages({ ep }) {
         <Hide below="md">
           <Box className={styles.childDiv} w={"23%"}></Box>
         </Hide>
-        
+
         <Box className={styles.childDiv} w={{ base: "100%", md: "77%" }}>
-          <Flex >
+          <Flex>
             <Hide below="sm">
-            <Text
-              w={"50%"}
-              fontSize={14}
-              fontWeight={600}
-              color={"rgba(21,27,57,.6)"}
-            >
-              All Products
-            </Text>
+              <Text
+                w={"50%"}
+                fontSize={14}
+                fontWeight={600}
+                color={"rgba(21,27,57,.6)"}
+              >
+                All Products
+              </Text>
             </Hide>
             <Stack
               direction={{ base: "column", md: "row" }}
               w={"50%"}
-              m={'auto'}
+              m={"auto"}
             >
               {/* color: #24aeb1;
     border: 1px solid #24aeb1; */}
-              <Text fontSize={14}
-              fontWeight={600}
-              mr={{base:15,md:20}}
-              textAlign={'center'}
-              color={"rgba(21,27,57,.6)"}>Sort by: </Text>
+              <Text
+                fontSize={14}
+                fontWeight={600}
+                mr={{ base: 15, md: 20 }}
+                textAlign={"center"}
+                color={"rgba(21,27,57,.6)"}
+              >
+                Sort by:{" "}
+              </Text>
               <Tag
-
                 className={styles.filterButtons}
                 onClick={() =>
-                  setFilter({ sort: "popularity", direction: "1" })
+                  setFilter({ sort: "popularity", direction: 1 })
                 }
-                
                 fontWeight={400}
                 size={"sm"}
                 variant={"subtle"}
-                
               >
                 <TagLabel>Popularity</TagLabel>
               </Tag>
               <Tag
                 className={styles.filterButtons}
-                onClick={() => setFilter({ sort: "price", direction: "0" })}
+                onClick={() => setFilter({ sort: "price", direction:0 })}
                 size={"sm"}
                 fontWeight={400}
                 variant={"subtle"}
@@ -100,19 +102,19 @@ function AllPages({ ep }) {
                 <TagLabel>Low to High</TagLabel>
               </Tag>
               <Tag
-                onClick={() => setFilter({ sort: "price", direction: "1" })}
+                onClick={() => setFilter({ sort: "price", direction: 1 })}
                 size={"sm"}
                 fontWeight={400}
-                 className={styles.filterButtons}
+                className={styles.filterButtons}
                 variant={"subtle"}
               >
                 <TagLabel>High to Low</TagLabel>
               </Tag>
               <Tag
-                onClick={() => setFilter({ sort: "discount", direction: "1" })}
+                onClick={() => setFilter({ sort: "discount", direction: 1 })}
                 size={"sm"}
                 fontWeight={400}
-                 className={styles.filterButtons}
+                className={styles.filterButtons}
                 variant={"subtle"}
               >
                 <TagLabel>Discount</TagLabel>
@@ -132,13 +134,11 @@ function AllPages({ ep }) {
             }}
           >
             {data?.map((item) => {
-             return (loading?<Skeleton h={'200px'} bg={'blue.500'} fadeDuration={10}>
-                    <Box>
-                      ABBABABAB
-                    </Box>
-              </Skeleton>:
-              
-                
+              return loading ? (
+                <Skeleton h={"200px"} bg={"blue.500"} fadeDuration={10}>
+                  <Box>ABBABABAB</Box>
+                </Skeleton>
+              ) : (
                 <GridItem
                   w={"95%"}
                   m={"auto"}
@@ -151,12 +151,19 @@ function AllPages({ ep }) {
                   <Badge variant="solid" fontSize={10} bg="#84be52">
                     {item.discountPercent + "%"}
                   </Badge>
+                  {!item.images?<Image 
+                  w={{ base: "50%" }}
+                  m={"auto"}
+                  rounded={'50%'}
+                  // h={{ base: "100px" }}
+                  minH={'140px'}
+                  src={'https://www.netmeds.com/images/product-v1/75x75/formulation_based/creams.jpg'}/>:
                   <Image
                     w={{ base: "30%" }}
                     m={"auto"}
                     h={{ base: "140px" }}
                     src={item.images[0]}
-                  />
+                  />}
                   <Box w={"95%"} m={"auto"}>
                     <Text
                       color={"#151b39"}
@@ -213,9 +220,7 @@ function AllPages({ ep }) {
             })}
           </Grid>
         </Box>
-        
       </Flex>
-
     </Box>
   );
 }

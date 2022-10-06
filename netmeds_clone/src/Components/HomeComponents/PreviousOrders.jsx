@@ -20,28 +20,29 @@ function PreviousOrders() {
             >
               Your previously ordered products
             </Text>
-            <Link to={'/login'}>
-            <Text
-              color={"#24aeb1"}
-              fontWeight={"bold"}
-              fontSize={"15px"}
-              display={"flex"}
-              m={"auto"}
-              mt={8}
-              alignContent={"center"}
-              alignItems={"center"}
-            >
-              View Orders
-              <Icon
-                p={"2px"}
-                rounded={"50%"}
-                color={"white"}
+            <Link to={"/login"}>
+              <Text
+                color={"#24aeb1"}
                 fontWeight={"bold"}
-                bg={"#24aeb1"}
-                ml={12}
-                as={MdOutlineArrowForwardIos}
-              />
-            </Text></Link>
+                fontSize={"15px"}
+                display={"flex"}
+                m={"auto"}
+                mt={8}
+                alignContent={"center"}
+                alignItems={"center"}
+              >
+                View Orders
+                <Icon
+                  p={"2px"}
+                  rounded={"50%"}
+                  color={"white"}
+                  fontWeight={"bold"}
+                  bg={"#24aeb1"}
+                  ml={12}
+                  as={MdOutlineArrowForwardIos}
+                />
+              </Text>
+            </Link>
           </Box>
           <Box w={"30%"}>
             <Image
@@ -59,18 +60,19 @@ function PreviousOrders() {
             <Text fontWeight={"400"} color={"#5ba41c"}>
               Save Upto 40% off
             </Text>
-            <Link to={'/beauty'}>
-            <Button
-              bg={"#24aeb1"}
-              _hover={{ backgroundColor: "teal.500" }}
-              p={2}
-              color="white"
-              ml={3}
-              mb={3}
-              mt={8}
-            >
-              Explore Beauty
-            </Button></Link>
+            <Link to={"/beauty"}>
+              <Button
+                bg={"#24aeb1"}
+                _hover={{ backgroundColor: "teal.500" }}
+                p={2}
+                color="white"
+                ml={3}
+                mb={3}
+                mt={8}
+              >
+                Explore Beauty
+              </Button>
+            </Link>
           </Box>
           <Box w={"30%"}>
             <Image

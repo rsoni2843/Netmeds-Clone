@@ -28,10 +28,10 @@ function Home() {
         <LimitedTimeDeal />
       </Hide>
       <Hide below="sm">
-        <OriginNutrition/>
+        <OriginNutrition />
       </Hide>
       <Hide below="sm">
-        <ShopCategory/>
+        <ShopCategory />
       </Hide>
     </Box>
   );

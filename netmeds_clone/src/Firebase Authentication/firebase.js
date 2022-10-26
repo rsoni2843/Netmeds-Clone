@@ -1,9 +1,6 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-// import * as firebase from "firebase" ; 
-// import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -14,11 +11,23 @@ const firebaseConfig = {
   storageBucket: "netmeds-rsoni2843.appspot.com",
   messagingSenderId: "467547210334",
   appId: "1:467547210334:web:28045f57bbe0da71d1aacf",
-  measurementId: "G-GYC1JKCE5G"
+  measurementId: "G-GYC1JKCE5G",
 };
 
 // Initialize Firebase
 const firebase = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
-// console.log(firebase)
-export default firebase ; 
+export const auth = getAuth(firebase);
+
+const provider = new GoogleAuthProvider();
+
+export const signInWithGoogle = () => {
+  signInWithPopup(auth, provider)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+export default firebase;

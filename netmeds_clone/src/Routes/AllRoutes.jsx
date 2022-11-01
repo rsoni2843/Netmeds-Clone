@@ -28,7 +28,7 @@ function AllRoutes() {
         <Route path={"/medicine"} element={<Medicine />} />
         <Route path={"/medicine/:result"} element={<Result />} />
         <Route path={"/Login"} element={<Login />} />
-        <Route path={'category/:id'} element={<Categories/>}/>
+        {/* <Route path={'category/:id'} element={<Categories/>}/> */}
         <Route path={"/ayurvedic"} element={<Ayurvedic />} />
         <Route path={"/diabetes"} element={<Diabetes />} />
         <Route path={"/ayush"} element={<Ayush />} />

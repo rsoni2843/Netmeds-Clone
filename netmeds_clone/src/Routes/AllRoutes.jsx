@@ -18,6 +18,7 @@ import Treatment from "../Components/CategoryPages/AllCategories/Treatment";
 import Devices from "../Components/CategoryPages/AllCategories/Devices";
 import Diabetes from "../Components/CategoryPages/AllCategories/Diabetes";
 import Beauty from "./../Components/CategoryPages/AllCategories/Beauty";
+import LoginOG from "./LoginOG";
 
 function AllRoutes() {
   return (
@@ -27,7 +28,9 @@ function AllRoutes() {
         <Route path={"/checkout"} element={<Checkout />} />
         <Route path={"/medicine"} element={<Medicine />} />
         <Route path={"/medicine/:result"} element={<Result />} />
-        <Route path={"/Login"} element={<Login />} />
+        {/* <Route path={"/Login"} element={<Login />} /> */}
+        <Route path={"/Login"} element={<LoginOG />} />
+
         {/* <Route path={'category/:id'} element={<Categories/>}/> */}
         <Route path={"/ayurvedic"} element={<Ayurvedic />} />
         <Route path={"/diabetes"} element={<Diabetes />} />

@@ -1,7 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./Home";
-import Login from "./Login";
 import Checkout from "./Checkout";
 import Medicine from "./Medicine";
 import Result from "./Result";

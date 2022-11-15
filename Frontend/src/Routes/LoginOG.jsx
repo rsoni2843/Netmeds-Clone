@@ -19,13 +19,20 @@ import {
 } from "@chakra-ui/react";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import login from "../Redux/Users/Login/login.action";
+import login, {
+  signInWithFacebook,
+  signInWithGoogle,
+} from "../Redux/Users/Login/login.action";
+import { useNavigate } from "react-router-dom";
+import SignupModal from "./SignupModal";
 
 const LoginOG = () => {
   const [user, setUser] = useState({ email: "", password: "" });
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { isLoading, isError, isAuth, noEmail, incorrectEmail } = useSelector(
     (store) => store.login
   );
@@ -45,6 +52,11 @@ const LoginOG = () => {
       password: "",
     });
   };
+  useEffect(() => {
+    if (isAuth) {
+      navigate("/");
+    }
+  }, [isAuth]);
   return (
     <Flex
       alignItems={"center"}
@@ -58,7 +70,7 @@ const LoginOG = () => {
         />
       </Hide>
       <Stack
-        spacing={8}
+        spacing={4}
         mx={"auto"}
         maxW={"lg"}
         w={{ md: "40%", base: "98%" }}
@@ -133,10 +145,11 @@ const LoginOG = () => {
                 </Button>
               </Stack>
             </form>
-
+            <SignupModal />
             <Stack direction={{ sm: "row", base: "column" }}>
               {/* Facebook */}
               <Button
+                onClick={() => dispatch(signInWithFacebook())}
                 w={"full"}
                 colorScheme={"facebook"}
                 leftIcon={<FaFacebook />}
@@ -148,6 +161,7 @@ const LoginOG = () => {
 
               {/* Google */}
               <Button
+                onClick={() => dispatch(signInWithGoogle())}
                 w={"full"}
                 color={"black"}
                 variant={"outline"}
@@ -158,6 +172,9 @@ const LoginOG = () => {
                 </Center>
               </Button>
             </Stack>
+            {isError ? (
+              <Text color={"red"}>Some Error Occured. Please Reload!</Text>
+            ) : null}
           </Stack>
         </Box>
       </Stack>

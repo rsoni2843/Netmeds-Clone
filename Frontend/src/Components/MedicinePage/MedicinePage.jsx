@@ -3,7 +3,6 @@ import {
   Button,
   Flex,
   Image,
-  Skeleton,
   Stack,
   Tag,
   TagLabel,

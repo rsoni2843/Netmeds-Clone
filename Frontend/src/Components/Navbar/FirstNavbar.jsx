@@ -9,44 +9,41 @@ import {
   Show,
 } from "@chakra-ui/react";
 import styles from "../Styles/navbar.module.css";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import LocationMenu from "./LocationMenu/LocationMenu";
 import { AiOutlineSearch } from "react-icons/ai";
 import LoginCart from "./LoginCart";
-import { AppContext } from "../../Context/AppContext";
+// import { AppContext } from "../../Context/AppContext";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getMedicineList } from "../../Redux/MedicineData/medicine.action";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const logo =
   "https://nms-assets.s3-ap-south-1.amazonaws.com/images/cms/aw_rbslider/slides/1663609483_netmeds-new-logo.svg";
 function FirstNavbar({ data }) {
   const navigate = useNavigate();
-  const { handleChange } = useContext(AppContext);
-  // const handleFilter = (e)=>{
-  //   const word = e.target.value ;
-  //   const newFilter = data.filter((value)=>{
-  //     return value
-  //   })
-  //   console.log(newFilter) ;
-  // }
-  // const onChange = (e)=>{
-  //   setText(e.target.value) ;
-  // }
-  // const onSearch = (term) =>{
-  //   setText(term)
-  // }
+  const [query, setQuery] = useState("");
+  const dispatch = useDispatch();
+  // const { handleChange } = useContext(AppContext);
+
   const onEnter = (e) => {
-    // handleChange()
-    // console.log(text)
-    handleChange(e.target.value);
     if (e.key === "Enter") {
       e.preventDefault();
       navigate("/medicine");
     }
+    let timer = setTimeout(() => {
+      setQuery(e.target.value);
+    }, 3000);
+    return () => clearTimeout(timer);
   };
-  // const onChange = (e)=>{
-  //  handleChange(e.target.value) ;
-  // }
+  useEffect(() => {
+    if (query !== "") {
+      dispatch(getMedicineList(query));
+    }
+  }, [query]);
 
   return (
     <>
@@ -96,14 +93,12 @@ function FirstNavbar({ data }) {
                     _active={{ border: "none", outline: "none" }}
                     border={"none"}
                     outline={"0"}
-                    // onBlur={()=>setTimeout()}
                     w={{ base: "100%", md: "100%" }}
                     h={{ base: "35px", md: "30px", lg: "40px" }}
                     ml={{ base: null, md: 3 }}
                     textAlign={{ base: "center", md: "left" }}
                     fontSize={{ base: "13px", md: "16px", lg: "16px" }}
                     placeholder={"Enter for medicines & wellness products..."}
-                    // onChange={handleFilter}
                   />
                   {/* <ReactS */}
                   {/* <SearchBar

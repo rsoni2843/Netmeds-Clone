@@ -1,19 +1,12 @@
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import {
-  Box,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-  Text,
-} from "@chakra-ui/react";
+import { Menu, MenuButton, MenuList } from "@chakra-ui/react";
 import React from "react";
 
 function LocationMenu() {
   return (
-    < >
+    <>
       <Menu isLazy>
-        <MenuButton color={'teal'} fontWeight={600}>
+        <MenuButton color={"teal"} fontWeight={600}>
           226021
           <ChevronDownIcon />
         </MenuButton>

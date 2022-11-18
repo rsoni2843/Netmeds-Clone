@@ -8,33 +8,22 @@ import CorsError from "./CorsError";
 import FirstNavbar from "./FirstNavbar";
 
 function Navbar() {
-  const [cors, setCors] = useState(true);
-  // const navigate = useNavigate();
-  const { handleChange,main } = useContext(AppContext);
+  const { handleChange, main } = useContext(AppContext);
   const onChange = (e) => {
     handleChange(e.target.value);
   };
   // const onEnter = (e)=>{
   //   // handleChange()
-  //   handleChange(e.target.value) ; 
+  //   handleChange(e.target.value) ;
   //   if(e.key === "Enter"){
   //     e.preventDefault() ;
   //     navigate('/medicine')
   //   }
   // }
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setCors(false);
-    }, 20000);
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []);
-  
+
   // console.log(cors);
   return (
     <Box bg={"#32aeb1"}>
-      {cors ? <CorsError setCors={setCors} /> : null}
       <FirstNavbar data={main} onChange={onChange} />
       <Hide below="md">
         <SecondNavbar />

@@ -16,20 +16,20 @@ import {
 } from "@chakra-ui/react";
 import { getCategory } from "../../API/api";
 import styles from "../Styles/navbar.module.css";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function AllPages({ ep }) {
   const [data, setData] = useState([]);
   // const [pd,setPd] = useState([]) ;
   const [loading, setLoading] = useState(false);
-
+  const { isAuth } = useSelector((store) => store.login);
   const [filter, setFilter] = useState({ sort: "", direction: "" });
   const [searchParams, setSearchParams] = useSearchParams();
   const initPage = Number(searchParams.get("page") || 1);
   const [page, setPage] = useState(initPage);
 
   useEffect(() => {
-    // setLoading(true)
     handleData();
   }, [filter]);
   function handleData() {
@@ -44,7 +44,7 @@ function AllPages({ ep }) {
   useEffect(() => {
     setSearchParams({ ...filter, page });
   }, [page, filter, setSearchParams]);
-
+  console.log(data);
   return (
     <Box className={styles.allMain}>
       {/* <Skeleton> */}
@@ -83,9 +83,7 @@ function AllPages({ ep }) {
               </Text>
               <Tag
                 className={styles.filterButtons}
-                onClick={() =>
-                  setFilter({ sort: "popularity", direction: 1 })
-                }
+                onClick={() => setFilter({ sort: "popularity", direction: 1 })}
                 fontWeight={400}
                 size={"sm"}
                 variant={"subtle"}
@@ -94,7 +92,7 @@ function AllPages({ ep }) {
               </Tag>
               <Tag
                 className={styles.filterButtons}
-                onClick={() => setFilter({ sort: "price", direction:0 })}
+                onClick={() => setFilter({ sort: "price", direction: 0 })}
                 size={"sm"}
                 fontWeight={400}
                 variant={"subtle"}
@@ -139,83 +137,93 @@ function AllPages({ ep }) {
                   <Box>ABBABABAB</Box>
                 </Skeleton>
               ) : (
-                <GridItem
-                  w={"95%"}
-                  m={"auto"}
-                  mt={3}
-                  p={2}
-                  key={item.name}
-                  rounded={"lg"}
-                  border={"solid 1px rgba(112,112,112,.38)"}
-                >
-                  <Badge variant="solid" fontSize={10} bg="#84be52">
-                    {item.discountPercent + "%"}
-                  </Badge>
-                  {!item.images?<Image 
-                  w={{ base: "50%" }}
-                  m={"auto"}
-                  rounded={'50%'}
-                  // h={{ base: "100px" }}
-                  minH={'140px'}
-                  src={'https://www.netmeds.com/images/product-v1/75x75/formulation_based/creams.jpg'}/>:
-                  <Image
-                    w={{ base: "30%" }}
+                <Link to={`/medicine/${item.productId}`} key={item.productId}>
+                  <GridItem
+                    w={"95%"}
                     m={"auto"}
-                    h={{ base: "140px" }}
-                    src={item.images[0]}
-                  />}
-                  <Box w={"95%"} m={"auto"}>
-                    <Text
-                      color={"#151b39"}
-                      lineHeight={4}
-                      minH={14}
-                      fontWeight={600}
-                      fontSize={12}
-                      letterSpacing={0}
-                      display={"block"}
-                      overflow={"hidden"}
-                    >
-                      {item.name}
-                    </Text>
-                    <Text
-                      fontStyle={"italic"}
-                      fontWeight={400}
-                      color={"#6f7284"}
-                      fontSize={12}
-                    >
-                      Mkt: {item.manufacturer}
-                    </Text>
-                    <Flex>
-                      <Text fontSize={14} fontWeight={600} color={"#6f7284"}>
-                        Best price*
+                    mt={3}
+                    p={2}
+                    key={item.name}
+                    rounded={"lg"}
+                    border={"solid 1px rgba(112,112,112,.38)"}
+                  >
+                    <Badge variant="solid" fontSize={10} bg="#84be52">
+                      {item.discountPercent + "%"}
+                    </Badge>
+                    {!item.images ? (
+                      <Image
+                        w={{ base: "50%" }}
+                        m={"auto"}
+                        rounded={"50%"}
+                        // h={{ base: "100px" }}
+                        minH={"140px"}
+                        src={
+                          "https://www.netmeds.com/images/product-v1/75x75/formulation_based/creams.jpg"
+                        }
+                      />
+                    ) : (
+                      <Image
+                        w={{ base: "30%" }}
+                        m={"auto"}
+                        h={{ base: "140px" }}
+                        src={item.images[0]}
+                      />
+                    )}
+                    <Box w={"95%"} m={"auto"}>
+                      <Text
+                        color={"#151b39"}
+                        lineHeight={4}
+                        minH={14}
+                        fontWeight={600}
+                        fontSize={12}
+                        letterSpacing={0}
+                        display={"block"}
+                        overflow={"hidden"}
+                      >
+                        {item.name}
                       </Text>
                       <Text
-                        color={"#ef4281"}
-                        ml={1}
-                        fontWeight={600}
-                        fontSize={16}
+                        fontStyle={"italic"}
+                        fontWeight={400}
+                        color={"#6f7284"}
+                        fontSize={12}
                       >
-                        Rs. {item.salePriceDecimal}
+                        Mkt: {item.manufacturer}
                       </Text>
-                    </Flex>
-                    <Flex fontSize={12} color={"#6f7284"} fontWeight={400}>
-                      <Text>MRP </Text>
-                      <Text ml={2} textDecoration={"line-through"}>
-                        {" "}
-                        {item.mrpDecimal}
-                      </Text>
-                    </Flex>
-                    <Button
-                      color={"white"}
-                      _hover={{ bg: "teal.400" }}
-                      w={"100%"}
-                      bg={"#24aeb1"}
-                      fontSize={12}
-                    >
-                      ADD TO CART
-                    </Button>
-                  </Box>
-                </GridItem>
+                      <Flex>
+                        <Text fontSize={14} fontWeight={600} color={"#6f7284"}>
+                          Best price*
+                        </Text>
+                        <Text
+                          color={"#ef4281"}
+                          ml={1}
+                          fontWeight={600}
+                          fontSize={16}
+                        >
+                          Rs. {item.salePriceDecimal}
+                        </Text>
+                      </Flex>
+                      <Flex fontSize={12} color={"#6f7284"} fontWeight={400}>
+                        <Text>MRP </Text>
+                        <Text ml={2} textDecoration={"line-through"}>
+                          {" "}
+                          {item.mrpDecimal}
+                        </Text>
+                      </Flex>
+                      <Link to={isAuth ? "/cart" : "/login"}>
+                        <Button
+                          color={"white"}
+                          _hover={{ bg: "teal.400" }}
+                          w={"100%"}
+                          bg={"#24aeb1"}
+                          fontSize={12}
+                        >
+                          ADD TO CART
+                        </Button>
+                      </Link>
+                    </Box>
+                  </GridItem>
+                </Link>
               );
             })}
           </Grid>

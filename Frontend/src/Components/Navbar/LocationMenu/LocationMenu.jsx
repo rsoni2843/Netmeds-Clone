@@ -3,6 +3,17 @@ import { Menu, MenuButton, MenuList } from "@chakra-ui/react";
 import React from "react";
 
 function LocationMenu() {
+  const [lat, setLat] = React.useState("");
+  const [lon, setLon] = React.useState("");
+
+  React.useEffect(() => {
+    navigator.geolocation.getCurrentPosition((pos) => {
+      // console.log(pos);
+      setLat(pos.coords.latitude);
+      setLon(pos.coords.longitude);
+    });
+  }, []);
+
   return (
     <>
       <Menu isLazy>
@@ -10,12 +21,7 @@ function LocationMenu() {
           226021
           <ChevronDownIcon />
         </MenuButton>
-        <MenuList>
-          {/* MenuItems are not rendered unless Menu is open */}
-          {/* <MenuItem>New Window</MenuItem>
-          <MenuItem>Open Closed Tab</MenuItem>
-          <MenuItem>Open File</MenuItem> */}
-        </MenuList>
+        <MenuList></MenuList>
       </Menu>
     </>
   );

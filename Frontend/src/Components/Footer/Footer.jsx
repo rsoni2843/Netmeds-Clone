@@ -85,7 +85,7 @@ function Footer() {
         borderBottom={"2px solid rgba(11,18,25,.1)"}
       >
         <Flex>
-          <Box w={{ md: "16%", sm: "30%" }}>
+          <Box m={"auto"} w={{ md: "16%", base: "40%" }}>
             <Image src={logo} />
           </Box>
           <Hide below="sm">

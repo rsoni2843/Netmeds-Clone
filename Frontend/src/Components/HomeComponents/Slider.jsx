@@ -40,8 +40,7 @@ function Slider() {
         showStatus={false}
         autoFocus
         showThumbs={false}
-        infiniteLoop
-        interval={5000}
+        interval={8000}
         autoPlay
       >
         {sliderImages.map((item, i) => {
@@ -50,7 +49,7 @@ function Slider() {
               <Box>
                 <Image
                   mt={10}
-                  h={{ base: "100px", md: "200px", lg: "300px" }}
+                  h={{ base: "160px", md: "200px", lg: "300px" }}
                   key={i}
                   src={item.image}
                 />

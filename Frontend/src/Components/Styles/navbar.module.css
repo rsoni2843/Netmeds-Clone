@@ -22,7 +22,7 @@
   justify-content: space-around;
   width: 25%;
 }
-.b1{
+.b1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -91,7 +91,7 @@
 /* mt={'20px'} w={'98%'} m='auto' */
 .carouselContainer {
   /* margin-top: 30px; */
-  width: 98%;
+  width: 96%;
   margin: auto;
 }
 .carouselContainer > .dot {

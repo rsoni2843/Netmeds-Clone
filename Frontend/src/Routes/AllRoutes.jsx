@@ -25,12 +25,12 @@ function AllRoutes() {
     <div>
       <Routes>
         <Route path={"/"} element={<Home />} />
-        <Route path={"/checkout"} element={<Checkout />} />
+        <Route path={"/cart"} element={<Checkout />} />
         <Route path={"/medicine"} element={<Medicine />} />
         <Route path={"/medicine/:id"} element={<MedicineProduct />} />
         {/* <Route path={"/Login"} element={<Login />} /> */}
         <Route path={"/login"} element={<LoginOG />} />
-
+        {/* <Route path={"/cart"} element={}/> */}
         {/* <Route path={'category/:id'} element={<Categories/>}/> */}
         <Route path={"/ayurvedic"} element={<Ayurvedic />} />
         <Route path={"/diabetes"} element={<Diabetes />} />

@@ -34,7 +34,7 @@ function LimitedTimeDeal() {
   // console.log(deal);
   return (
     <Box pos={"relative"} mt={8}>
-      <Box minH={200} bg={"#32aeb1"} color={"white"} border={"1px solid black"}>
+      <Box minH={200} bg={"#32aeb1"} color={"white"}>
         <Flex justifyContent={"space-between"} w={"98%"} m="auto">
           <Text fontSize={"24px"} fontWeight={500}>
             Limited Time Deals
@@ -50,7 +50,13 @@ function LimitedTimeDeal() {
             View All <MdOutlineArrowForwardIos />
           </Text>
         </Flex>
-        <Box zIndex={1} position={"absolute"} w={"98%"} m={"auto"} mt={10}>
+        <Box
+          zIndex={1}
+          position={{ md: "absolute" }}
+          w={{ base: "70%", md: "98%" }}
+          m={"auto"}
+          mt={10}
+        >
           <Carousel
             infinite={true}
             autoPlay={true}

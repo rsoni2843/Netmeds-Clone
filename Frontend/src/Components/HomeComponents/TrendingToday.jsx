@@ -36,8 +36,10 @@ function TrendingToday() {
   };
 
   return (
-    <Box m={"auto"}>
-      <Text>Trending Today</Text>
+    <Box className={styles.newComponent}>
+      <Text fontSize={{ base: "xl", md: "2xl" }} className={styles.leftHeading}>
+        Trending Today
+      </Text>
       <Carousel
         infinite={true}
         autoPlay={true}

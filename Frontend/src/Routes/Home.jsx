@@ -24,9 +24,9 @@ function Home() {
         <PreviousOrders />
       </Hide>
       <TrendingToday />
-      <Hide below="sm">
-        <LimitedTimeDeal />
-      </Hide>
+      {/* <Hide below="sm"> */}
+      <LimitedTimeDeal />
+      {/* </Hide> */}
       <Hide below="sm">
         <OriginNutrition />
       </Hide>

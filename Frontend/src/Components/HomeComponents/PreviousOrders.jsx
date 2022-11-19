@@ -10,7 +10,7 @@ function PreviousOrders() {
         <Box borderRight={"0.1px solid grey"} display={"flex"} w={"50%"}>
           {/* <Icon as={ChevronRightIcon}/> */}
           <Box w={"70%"}>
-            <Text className={styles.leftHeading}>PreviousOrders</Text>
+            <Text className={styles.leftHeading}>Previous Orders</Text>
             <Text
               mt={2}
               fontWeight={"400"}

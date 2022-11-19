@@ -56,7 +56,7 @@ function FirstNavbar({ data }) {
         <Box w={{ base: "100%", sm: "20%" }} className={styles.b1}>
           <Link to={"/"}>
             <Image
-              width={{ base: "120px", sm: "155px" }}
+              width={{ base: "140px", sm: "155px" }}
               src={logo}
               alt={"NetMeds"}
             />
@@ -70,7 +70,7 @@ function FirstNavbar({ data }) {
 
         <Box
           w={{ base: "100%", sm: "70%" }}
-          borderRadius={{ base: "none", sm: "md" }}
+          borderRadius={{ base: "half", sm: "md" }}
           className={styles.b2}
         >
           <Box>
@@ -94,7 +94,7 @@ function FirstNavbar({ data }) {
                     border={"none"}
                     outline={"0"}
                     w={{ base: "100%", md: "100%" }}
-                    h={{ base: "35px", md: "30px", lg: "40px" }}
+                    h={{ base: "30px", lg: "40px" }}
                     ml={{ base: null, md: 3 }}
                     textAlign={{ base: "center", md: "left" }}
                     fontSize={{ base: "13px", md: "16px", lg: "16px" }}

@@ -1,4 +1,7 @@
 import {
+  CART_ERROR,
+  CART_LOADING,
+  CART_SUCCESS,
   MEDICINE_ERROR,
   MEDICINE_LOADING,
   MEDICINE_SUCCESS,
@@ -13,6 +16,7 @@ const initialState = {
   medProd: [],
   prodImg: [],
   medList: [],
+  cartCount: [],
   query: "",
 };
 
@@ -58,6 +62,28 @@ function medicineReducer(state = initialState, action) {
       };
     }
     case MEDLIST_ERROR: {
+      return {
+        ...state,
+        isError: true,
+        isLoading: false,
+      };
+    }
+    case CART_LOADING: {
+      return {
+        ...state,
+        isError: false,
+        isLoading: true,
+      };
+    }
+    case CART_SUCCESS: {
+      return {
+        ...state,
+        isError: false,
+        isLoading: false,
+        cartCount: [...state.cartCount, action.payload],
+      };
+    }
+    case CART_ERROR: {
       return {
         ...state,
         isError: true,

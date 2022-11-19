@@ -1,14 +1,7 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Image,
-  Stack,
-  StylesProvider,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, Image, Stack, Text } from "@chakra-ui/react";
 import styles from "../Styles/navbar.module.css";
 import React from "react";
+import { useSelector } from "react-redux";
 
 const data = {
   productId: 22736,
@@ -354,6 +347,8 @@ const data = {
 };
 
 const Cart = () => {
+  const { cartCount } = useSelector((store) => store.listData);
+  console.log(cartCount);
   return (
     <>
       <Box
@@ -368,7 +363,7 @@ const Cart = () => {
         <Stack m={"auto"} mt={4} direction={{ base: "column", md: "row" }}>
           <Flex w={{ base: "98%", md: "70%" }} gap={4} border={"1px"}>
             <Box w={"20%"} border={"1px"}>
-              <Image src={data?.damImages[0]?.url} />
+              <Image w={80} src={data?.damImages[0]?.url} />
             </Box>
             <Box
               fontStyle={"italic"}

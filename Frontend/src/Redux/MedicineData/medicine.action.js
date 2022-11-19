@@ -1,4 +1,7 @@
 import {
+  CART_ERROR,
+  CART_LOADING,
+  CART_SUCCESS,
   MEDICINE_ERROR,
   MEDICINE_LOADING,
   MEDICINE_SUCCESS,
@@ -41,5 +44,15 @@ export const getProductMedicine = (info) => async (dispatch) => {
   } catch (err) {
     dispatch({ type: MEDICINE_ERROR });
     console.log(err);
+  }
+};
+
+export const getCart = (info) => async (dispatch) => {
+  dispatch({ type: CART_LOADING });
+  try {
+    dispatch({ type: CART_SUCCESS, payload: info });
+  } catch (err) {
+    console.error(err);
+    dispatch({ type: CART_ERROR });
   }
 };

@@ -1,10 +1,13 @@
 import { Box, Button, Flex, Image, Stack, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useSearchParams } from "react-router-dom";
+import { getCart } from "../../Redux/MedicineData/medicine.action";
+import { CART_SUCCESS } from "../../Redux/MedicineData/medicine.type";
 
 function MedicinePage() {
   const [params, setParams] = useSearchParams();
+  const dispatch = useDispatch();
   const { isAuth } = useSelector((store) => store.login);
   const { medList, query } = useSelector((store) => store.listData);
   const [q, setQ] = useState(query);
@@ -17,7 +20,6 @@ function MedicinePage() {
   if (!medList.products) {
     return (
       <Box m={"auto"}>
-        {/* <Text>Nothing Found</Text> */}
         <Image
           m={"auto"}
           src={
@@ -50,80 +52,78 @@ function MedicinePage() {
                   m={"auto"}
                   mt={4}
                 >
-                  <Link to={`/medicine/${item.productId}`} key={item.productId}>
-                    <Flex
-                      direction={{ base: "column", md: "row" }}
-                      minH={"130px"}
-                    >
-                      <Box w={{ base: "98%", md: "25%" }}>
-                        {!item.image ? (
-                          <Image
-                            w={"100px"}
-                            m={"auto"}
-                            src={`https://www.netmeds.com/images/product-v1/75x75/formulation_based/tablets.jpg`}
-                          />
-                        ) : (
-                          <Image w={"100px"} m={"auto"} src={item.image} />
-                        )}
-                      </Box>
-                      <Box lineHeight={8} w={{ base: "98%", md: "50%" }}>
+                  <Flex
+                    direction={{ base: "column", md: "row" }}
+                    minH={"130px"}
+                  >
+                    <Box w={{ base: "98%", md: "25%" }}>
+                      {!item.image ? (
+                        <Image
+                          w={"100px"}
+                          m={"auto"}
+                          src={`https://www.netmeds.com/images/product-v1/75x75/formulation_based/tablets.jpg`}
+                        />
+                      ) : (
+                        <Image w={"100px"} m={"auto"} src={item.image} />
+                      )}
+                    </Box>
+                    <Box lineHeight={8} w={{ base: "98%", md: "50%" }}>
+                      <Link
+                        to={`/medicine/${item.productId}`}
+                        key={item.productId}
+                      >
                         <Text fontSize={18} fontWeight={600}>
                           {item.name}
                         </Text>
-                        <Flex mt={3}>
-                          <Text
-                            fontSize={16}
-                            fontWeight={600}
-                            color={"#6f7284"}
-                          >
-                            Best price*
-                          </Text>
-                          <Text
-                            color={"#ef4281"}
-                            ml={1}
-                            fontWeight={600}
-                            fontSize={18}
-                          >
-                            ₹ {item?.salePriceDecimal}
-                          </Text>
-                        </Flex>
-                        <Flex fontSize={14} color={"#6f7284"} fontWeight={400}>
-                          <Text>MRP </Text>
-                          <Text ml={2} textDecoration={"line-through"}>
-                            {" "}
-                            ₹{item?.mrpDecimal}
-                          </Text>
-                        </Flex>
-                        <Text
-                          fontStyle={"italic"}
-                          fontWeight={400}
-                          color={"#6f7284"}
-                          fontSize={12}
-                        >
-                          Mkt: {item.manufacturer}
+                      </Link>
+                      <Flex mt={3}>
+                        <Text fontSize={16} fontWeight={600} color={"#6f7284"}>
+                          Best price*
                         </Text>
-                      </Box>
-
-                      <Box
-                        display={"flex"}
-                        justifyContent={"center"}
-                        alignItems={"center"}
-                        w={{ base: "98%", md: "25%" }}
+                        <Text
+                          color={"#ef4281"}
+                          ml={1}
+                          fontWeight={600}
+                          fontSize={18}
+                        >
+                          ₹ {item?.salePriceDecimal}
+                        </Text>
+                      </Flex>
+                      <Flex fontSize={14} color={"#6f7284"} fontWeight={400}>
+                        <Text>MRP </Text>
+                        <Text ml={2} textDecoration={"line-through"}>
+                          {" "}
+                          ₹{item?.mrpDecimal}
+                        </Text>
+                      </Flex>
+                      <Text
+                        fontStyle={"italic"}
+                        fontWeight={400}
+                        color={"#6f7284"}
+                        fontSize={12}
                       >
-                        <Link to={isAuth ? "/cart" : "/login"}>
-                          <Button
-                            color={"white"}
-                            _hover={{ bg: "teal.400" }}
-                            w={"100%"}
-                            bg={"#24aeb1"}
-                            fontSize={12}
-                          >
-                            ADD TO CART
-                          </Button>
-                        </Link>
-                      </Box>
-                    </Flex>
-                  </Link>
+                        Mkt: {item.manufacturer}
+                      </Text>
+                    </Box>
+
+                    <Box
+                      display={"flex"}
+                      justifyContent={"center"}
+                      alignItems={"center"}
+                      w={{ base: "98%", md: "25%" }}
+                    >
+                      <Button
+                        onClick={() => dispatch(getCart(item))}
+                        color={"white"}
+                        _hover={{ bg: "teal.400" }}
+                        w={"100%"}
+                        bg={"#24aeb1"}
+                        fontSize={12}
+                      >
+                        ADD TO CART
+                      </Button>
+                    </Box>
+                  </Flex>
                 </Box>
               );
             })}

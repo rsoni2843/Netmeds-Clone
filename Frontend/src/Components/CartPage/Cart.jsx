@@ -348,7 +348,16 @@ const data = {
 
 const Cart = () => {
   const { cartCount } = useSelector((store) => store.listData);
-  console.log(cartCount);
+  // console.log(cartCount);
+  // cartCount?.map((e) =>{
+  //   console.log
+  // });
+  let sum = 0;
+  for (let a = 0; a < cartCount.length; a++) {
+    sum = sum + Number(cartCount[a].salePriceDecimal);
+  }
+  console.log(sum);
+
   return (
     <>
       <Box
@@ -361,43 +370,59 @@ const Cart = () => {
       >
         <Text className={styles.leftHeading}>Order Summary</Text>
         <Stack m={"auto"} mt={4} direction={{ base: "column", md: "row" }}>
-          <Flex w={{ base: "98%", md: "70%" }} gap={4} border={"1px"}>
-            <Box w={"20%"} border={"1px"}>
-              <Image w={80} src={data?.damImages[0]?.url} />
-            </Box>
-            <Box
-              fontStyle={"italic"}
-              fontWeight={400}
-              color={"#6f7284"}
-              fontSize={12}
-              w={"80%"}
-              border={"1px"}
-            >
-              <Text fontStyle={"normal"} color={"black"} fontSize={"md"}>
-                {data?.name}
-              </Text>
-              <Text mt={2}>{data?.measurementUnit}</Text>
-              <Text>{data?.consumerBrandName}</Text>
-              <Text
-                mt={3}
-                fontStyle={"normal"}
-                fontSize={16}
-                fontWeight={600}
-                color={"#ef4281"}
-              >
-                Rs.{data?.salePriceDecimal}
-              </Text>
-            </Box>
-          </Flex>
+          <Box w={{ base: "98%", md: "70%" }} border={"1px"}>
+            {cartCount?.map((item) => {
+              return (
+                <Box key={item?.productId} mb={2} mt={2}>
+                  <Flex gap={4}>
+                    <Box w={"20%"} border={"1px"}>
+                      <Image
+                        maxH={"100px"}
+                        w={80}
+                        src={item?.damImages[0]?.url}
+                      />
+                    </Box>
+                    <Box
+                      fontStyle={"italic"}
+                      fontWeight={400}
+                      color={"#6f7284"}
+                      fontSize={12}
+                      w={"80%"}
+                      border={"1px"}
+                    >
+                      <Text
+                        fontStyle={"normal"}
+                        color={"black"}
+                        fontSize={"md"}
+                      >
+                        {item?.name}
+                      </Text>
+                      <Text mt={2}>{item?.measurementUnit}</Text>
+                      <Text>{item?.consumerBrandName}</Text>
+                      <Text
+                        mt={3}
+                        fontStyle={"normal"}
+                        fontSize={16}
+                        fontWeight={600}
+                        color={"#ef4281"}
+                      >
+                        Rs.{item?.salePriceDecimal}
+                      </Text>
+                    </Box>
+                  </Flex>
+                </Box>
+              );
+            })}
+          </Box>
           <Box p={3} w={{ base: "98%", md: "30%" }} border={"1px"}>
-            <Text>Payment Details</Text>
-            <Flex mt={4} justifyContent={"space-between"}>
+            <Text fontWeight={"bold"}>Payment Details</Text>
+            <Flex mt={6} justifyContent={"space-between"}>
               <Text>MRP Total: </Text>
-              <Text>{data?.salePriceDecimal}</Text>
+              <Text>{Math.floor(sum)}</Text>
             </Flex>
-            <Flex justifyContent={"space-between"}>
-              <Text>MRP Total: </Text>
-              <Text>{data?.salePriceDecimal}</Text>
+            <Flex fontWeight={600} justifyContent={"space-between"}>
+              <Text>Total Amount: </Text>
+              <Text>{Math.floor(sum)}</Text>
             </Flex>
             <Box mt={4} align={"center"}>
               <Button

@@ -20,7 +20,7 @@ const MedicineProduct = () => {
 
   React.useEffect(() => {
     dispatch(getProductMedicine(params.id));
-  }, []);
+  }, [params.id]);
   const image = { ...medProd.damImages };
   console.log(medProd);
 

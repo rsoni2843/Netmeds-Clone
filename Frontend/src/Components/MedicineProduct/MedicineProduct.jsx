@@ -14,15 +14,12 @@ import {
 } from "@chakra-ui/react";
 
 const MedicineProduct = () => {
+  const item = JSON.parse(localStorage.getItem("seeProduct"));
+  console.log(item);
   const dispatch = useDispatch();
   const params = useParams();
-  const { medProd, prodImg } = useSelector((store) => store.listData);
 
-  React.useEffect(() => {
-    dispatch(getProductMedicine(params.id));
-  }, [params.id]);
-  const image = { ...medProd.damImages };
-  console.log(medProd);
+  console.log(params);
 
   return (
     <>
@@ -41,24 +38,24 @@ const MedicineProduct = () => {
             w={"70%"}
             maxH={{ md: "600px" }}
             m={"auto"}
-            src={image[0]?.url}
+            src={`https://res.sastasundar.com/incom/images/product/thumb/${item[11]}`}
           />
         </Box>
         <Box w={{ md: "55%", base: "100%" }}>
           <Box mt={12} lineHeight={{ lg: "7" }}>
             <Text mt={2} fontWeight={300} fontSize={{ md: "2xl", base: "md" }}>
-              {medProd.name}
+              {item[9]}
             </Text>
             <Hide below={"md"}>
               <Stack mt={4} direction="row">
-                <Badge colorScheme="green">
+                {/* <Badge colorScheme="green">
                   {{ ...medProd?.therapies }[0]?.therapy_name}
-                </Badge>
-                <Badge colorScheme="purple">{medProd.packform}</Badge>
+                </Badge> */}
+                <Badge colorScheme="purple">{item[3]}</Badge>
               </Stack>
             </Hide>
-            <Text fontSize={13} mt={2} mb={4}>
-              {medProd?.productTierAttributes?.text}
+            <Text textTransform="capitalize" fontSize={13} mt={2} mb={4}>
+              {item[31]}
             </Text>
             <hr />
             <Flex mt={4}>
@@ -66,14 +63,14 @@ const MedicineProduct = () => {
                 Best price*
               </Text>
               <Text color={"#ef4281"} ml={1} fontWeight={600} fontSize={20}>
-                ₹ {medProd?.salePriceDecimal}
+                ₹ {item[63]}
               </Text>
             </Flex>
             <Flex mt={4} fontSize={14} color={"#6f7284"} fontWeight={400}>
               <Text>MRP </Text>
               <Text ml={2} textDecoration={"line-through"}>
                 {" "}
-                ₹{medProd?.mrpDecimal}
+                ₹{item[68]}
               </Text>
             </Flex>
             <Box
@@ -86,15 +83,18 @@ const MedicineProduct = () => {
               <Text>
                 Get the best price on this product on orders above Rs 1499
               </Text>
-              <Text>Mkt: {medProd?.manufacturer}</Text>
+              <Text>Mkt: {item[1]}</Text>
               <Text>Country of Origin: India</Text>
               <Text>
                 Delivery charges if applicable will be applied at checkout
               </Text>
             </Box>
-            <Text>{medProd.measurementUnit}</Text>
+            <Text>{item[32]}</Text>
             <Box mt={{ base: "10px", md: "40px" }}>
               <Button
+                onClick={() =>
+                  localStorage.setItem("cartCount", JSON.stringify(item))
+                }
                 m={"auto"}
                 color={"white"}
                 _hover={{ bg: "teal.400" }}

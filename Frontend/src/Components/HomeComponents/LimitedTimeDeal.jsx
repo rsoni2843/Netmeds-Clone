@@ -1,12 +1,11 @@
 import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import { getPrivate } from "../../API/api";
 import Carousel from "react-multi-carousel";
 import styles from "../Styles/navbar.module.css";
 import "react-multi-carousel/lib/styles.css";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
+import { limitedTimeDeal } from "./data";
+import { Link } from "react-router-dom";
 function LimitedTimeDeal() {
-  const [deal, setDeal] = useState([]);
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -26,12 +25,6 @@ function LimitedTimeDeal() {
       items: 1,
     },
   };
-  useEffect(() => {
-    getPrivate().then((res) => {
-      setDeal(res.data.data.categories);
-    });
-  }, []);
-  // console.log(deal);
   return (
     <Box pos={"relative"} mt={8}>
       <Box minH={200} bg={"#32aeb1"} color={"white"}>
@@ -67,40 +60,42 @@ function LimitedTimeDeal() {
             removeArrowOnDeviceType={"mobile"}
             responsive={responsive}
           >
-            {deal.map((item) => {
+            {limitedTimeDeal.map((item, i) => {
               return (
-                <Flex
-                  bg={"white"}
-                  m={2}
-                  direction={"column"}
-                  textAlign={"left"}
-                  key={item.id}
-                  boxShadow="md"
-                  p="6"
-                  borderRadius={20}
-                >
-                  <Image w={"80%"} m={"auto"} src={item.imageUrl} />
-                  <Text
-                    color={"black"}
-                    fontWeight={600}
-                    fontSize={"19px"}
-                    ml={4}
+                <Link key={i} to={item.path}>
+                  <Flex
+                    bg={"white"}
+                    m={2}
+                    direction={"column"}
+                    textAlign={"left"}
+                    key={i}
+                    boxShadow="md"
+                    p="6"
+                    borderRadius={20}
                   >
-                    {item.name}
-                  </Text>
-                  <Text mt={3} fontWeight={500} color={"#5ba41c"} ml={4}>
-                    {item.discountText}
-                  </Text>
-                  <Button
-                    _hover={{ bg: "teal.300" }}
-                    bg={"#32aeb1"}
-                    w={"90%"}
-                    m="auto"
-                    mt={4}
-                  >
-                    ADD TO CART
-                  </Button>
-                </Flex>
+                    <Image w={"80%"} m={"auto"} src={item.src} />
+                    <Text
+                      color={"black"}
+                      fontWeight={600}
+                      fontSize={"19px"}
+                      ml={4}
+                    >
+                      {item.name}
+                    </Text>
+                    <Text mt={3} fontWeight={500} color={"#5ba41c"} ml={4}>
+                      {item.discount}
+                    </Text>
+                    <Button
+                      _hover={{ bg: "teal.300" }}
+                      bg={"#32aeb1"}
+                      w={"90%"}
+                      m="auto"
+                      mt={4}
+                    >
+                      ADD TO CART
+                    </Button>
+                  </Flex>
+                </Link>
               );
             })}
           </Carousel>

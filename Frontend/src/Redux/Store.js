@@ -14,7 +14,6 @@ export const store = legacy_createStore(
     signup: signupReducer,
     login: loginReducer,
     listData: medicineReducer,
-    
   }),
   compose(applyMiddleware(thunk))
 );

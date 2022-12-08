@@ -19,13 +19,21 @@ import Diabetes from "../Components/CategoryPages/AllCategories/Diabetes";
 import Beauty from "./../Components/CategoryPages/AllCategories/Beauty";
 import LoginOG from "./LoginOG";
 import MedicineProduct from "../Components/MedicineProduct/MedicineProduct";
+import PrivateRoute from "./PrivateRoute";
 
 function AllRoutes() {
   return (
     <div>
       <Routes>
         <Route path={"/"} element={<Home />} />
-        <Route path={"/cart"} element={<Checkout />} />
+        <Route
+          path={"/cart"}
+          element={
+            <PrivateRoute>
+              <Checkout />
+            </PrivateRoute>
+          }
+        />
         <Route path={"/medicine"} element={<Medicine />} />
         <Route path={"/medicine/:id"} element={<MedicineProduct />} />
         {/* <Route path={"/Login"} element={<Login />} /> */}

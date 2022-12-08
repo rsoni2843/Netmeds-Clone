@@ -1,13 +1,12 @@
-import { getNutrition } from "../../API/api";
 import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-
+import React from "react";
 import Carousel from "react-multi-carousel";
 import styles from "../Styles/navbar.module.css";
 import "react-multi-carousel/lib/styles.css";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
+import { originNutrition } from "./data";
+
 function OriginNutrition() {
-  const [nutrition, setNutrition] = useState([]);
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -27,13 +26,7 @@ function OriginNutrition() {
       items: 1,
     },
   };
-  useEffect(() => {
-    getNutrition().then((res) => {
-      // console.log(res) ;
-      setNutrition(res.data.data.products);
-    });
-  }, []);
-  // console.log(nutrition);
+
   return (
     <Box pos={"relative"} mt={"300px"}>
       <Box minH={200} bg={"#32aeb1"} color={"white"} border={"1px solid black"}>
@@ -63,7 +56,7 @@ function OriginNutrition() {
             removeArrowOnDeviceType={"mobile"}
             responsive={responsive}
           >
-            {nutrition.map((item, i) => {
+            {originNutrition.map((item, i) => {
               return (
                 <Flex
                   key={i}
@@ -77,16 +70,7 @@ function OriginNutrition() {
                   p="6"
                   borderRadius={20}
                 >
-                  {item.images===null ? (
-                    <Image maxH={"160px"} w={"80%"} m={"auto"} src={'https://tse4.mm.bing.net/th?id=OIP.5XhVSpg-Snvht8K0pM4iXwHaHa&pid=Api&P=0'}></Image>
-                  ) :item?.images[0]? (
-                    <Image
-                      maxH={"160px"}
-                      w={"80%"}
-                      m={"auto"}
-                      src={item.images[0]}
-                    />
-                  ):null}
+                  <Image maxH={"160px"} w={"80%"} m={"auto"} src={item.src} />
                   <Text
                     color={"black"}
                     fontWeight={600}
@@ -96,7 +80,7 @@ function OriginNutrition() {
                     {item.name}
                   </Text>
                   <Text mt={3} fontWeight={500} color={"#5ba41c"} ml={4}>
-                    {item.discountPercent}% Off
+                    {item.discount}% Off
                   </Text>
                   <Button
                     _hover={{ bg: "teal.300" }}

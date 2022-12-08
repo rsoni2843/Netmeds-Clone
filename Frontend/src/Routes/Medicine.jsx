@@ -1,9 +1,11 @@
 import MedicinePage from "../Components/MedicinePage/MedicinePage";
+import ML from './../Components/MedicinePage/ML';
 
 function Medicine() {
   return (
     <div>
-      <MedicinePage />
+      {/* <MedicinePage /> */}
+      <ML/>
     </div>
   );
 }

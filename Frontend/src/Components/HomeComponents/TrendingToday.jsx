@@ -1,20 +1,11 @@
-import React, { useEffect, useState } from "react";
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import styles from "../Styles/navbar.module.css";
-import { getPrivate } from "../../API/api";
-// import { MdOutlineArrowForwardIos } from 'react-icons/md';
+import { trendingToday } from "./data";
+import { Link } from "react-router-dom";
 
 function TrendingToday() {
-  const [trending, setTrending] = useState([]);
-
-  useEffect(() => {
-    getPrivate().then((res) => {
-      // console.log(res)
-      setTrending(res.data.data.banner);
-    });
-  }, []);
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -47,21 +38,21 @@ function TrendingToday() {
         focusOnSelect={true}
         draggable={false}
         containerClass={styles.changeButtons}
-        // customLeftArrow={<MdOutlineArrowForwardIos/>}
         removeArrowOnDeviceType={"mobile"}
-        // itemClass="carousel-item-padding-40-px"
         responsive={responsive}
       >
         {/* <Box></Box> */}
-        {trending.map((item, i) => {
+        {trendingToday.map((item, i) => {
           return (
             <Flex justifyContent={"center"} alignContent={"center"} key={i}>
-              <Image
-                rounded={14}
-                h={{ lg: "220px", md: "180", base: "auto" }}
-                w={{ lg: "83%", md: "90%", base: "96%" }}
-                src={item.image}
-              />
+              <Link to={item.path}>
+                <Image
+                  rounded={14}
+                  h={{ lg: "220px", md: "180", base: "auto" }}
+                  w={{ lg: "98%", md: "90%", base: "96%" }}
+                  src={item.src}
+                />
+              </Link>
             </Flex>
           );
         })}

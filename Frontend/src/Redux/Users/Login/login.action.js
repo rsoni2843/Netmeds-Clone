@@ -16,7 +16,6 @@ const login = (creds) => async (dispatch) => {
   try {
     let res = await axios.post(
       "https://travelgo-rsoni2843.onrender.com/users/login",
-      // "https://rsoni2843-travelgo.herokuapp.com/users/login",
       creds
     );
     dispatch({ type: LOGIN_SUCCESS, payload: JSON.stringify(res.data.user) });

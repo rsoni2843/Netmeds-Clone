@@ -1,5 +1,4 @@
-// THIS PAGE IS NOT IN USE
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   Badge,
   Box,
@@ -15,41 +14,24 @@ import {
   TagLabel,
   Text,
 } from "@chakra-ui/react";
-import { getCategory } from "../../API/api";
+import { getCategory } from "./../../Redux/MedicineData/medicine.action";
+import { useEffect } from "react";
 import styles from "../Styles/navbar.module.css";
-import { Link, useSearchParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
-function AllPages({ ep }) {
-  const [data, setData] = useState([]);
-  // const [pd,setPd] = useState([]) ;
-  const [loading, setLoading] = useState(false);
-  const { isAuth } = useSelector((store) => store.login);
-  const [filter, setFilter] = useState({ sort: "", direction: "" });
-  const [searchParams, setSearchParams] = useSearchParams();
-  const initPage = Number(searchParams.get("page") || 1);
-  const [page, setPage] = useState(initPage);
-
-  useEffect(() => {
-    handleData();
-  }, [filter]);
-
+const APages = ({ ep }) => {
+  const dispatch = useDispatch();
+  const { categoryData, isLoading } = useSelector((store) => store.listData);
   function handleData() {
-    setLoading(true);
-    getCategory(ep, filter)
-      .then((res) => {
-        setLoading(false);
-        setData(res?.data.products);
-      })
-      .finally(() => setLoading(false));
+    dispatch(getCategory(ep));
   }
   useEffect(() => {
-    setSearchParams({ ...filter, page });
-  }, [page, filter, setSearchParams]);
-  console.log(data);
+    handleData();
+  }, [ep]);
+
   return (
     <Box className={styles.allMain}>
-      {/* <Skeleton> */}
       <Flex>
         <Hide below="md">
           <Box className={styles.childDiv} w={"23%"}></Box>
@@ -85,7 +67,7 @@ function AllPages({ ep }) {
               </Text>
               <Tag
                 className={styles.filterButtons}
-                onClick={() => setFilter({ sort: "popularity", direction: 1 })}
+                // onClick={() => setFilter({ sort: "popularity", direction: 1 })}
                 fontWeight={400}
                 size={"sm"}
                 variant={"subtle"}
@@ -94,7 +76,7 @@ function AllPages({ ep }) {
               </Tag>
               <Tag
                 className={styles.filterButtons}
-                onClick={() => setFilter({ sort: "price", direction: 0 })}
+                // onClick={() => setFilter({ sort: "price", direction: 0 })}
                 size={"sm"}
                 fontWeight={400}
                 variant={"subtle"}
@@ -102,7 +84,7 @@ function AllPages({ ep }) {
                 <TagLabel>Low to High</TagLabel>
               </Tag>
               <Tag
-                onClick={() => setFilter({ sort: "price", direction: 1 })}
+                // onClick={() => setFilter({ sort: "price", direction: 1 })}
                 size={"sm"}
                 fontWeight={400}
                 className={styles.filterButtons}
@@ -111,7 +93,7 @@ function AllPages({ ep }) {
                 <TagLabel>High to Low</TagLabel>
               </Tag>
               <Tag
-                onClick={() => setFilter({ sort: "discount", direction: 1 })}
+                // onClick={() => setFilter({ sort: "discount", direction: 1 })}
                 size={"sm"}
                 fontWeight={400}
                 className={styles.filterButtons}
@@ -133,26 +115,31 @@ function AllPages({ ep }) {
               lg: "repeat(4,1fr)",
             }}
           >
-            {data?.map((item) => {
-              return loading ? (
+            {categoryData?.map((item) => {
+              return isLoading ? (
                 <Skeleton h={"200px"} bg={"blue.500"} fadeDuration={10}>
-                  <Box>ABBABABAB</Box>
+                  {/* <Box>ABBABABAB</Box> */}
                 </Skeleton>
               ) : (
-                <Link to={`/medicine/${item.productId}`} key={item.productId}>
+                <Link
+                  onClick={() =>
+                    localStorage.setItem("seeProduct", JSON.stringify(item))
+                  }
+                  to={`/medicine/${item[8]}`}
+                >
                   <GridItem
                     w={"95%"}
                     m={"auto"}
                     mt={3}
                     p={2}
-                    key={item.name}
+                    key={item[8]}
                     rounded={"lg"}
                     border={"solid 1px rgba(112,112,112,.38)"}
                   >
                     <Badge variant="solid" fontSize={10} bg="#84be52">
-                      {item.discountPercent + "%"}
+                      {item[37] + "%"}
                     </Badge>
-                    {!item.images ? (
+                    {!item[11] ? (
                       <Image
                         w={{ base: "50%" }}
                         m={"auto"}
@@ -165,10 +152,10 @@ function AllPages({ ep }) {
                       />
                     ) : (
                       <Image
-                        w={{ base: "30%" }}
+                        w={{ base: "65%" }}
                         m={"auto"}
                         h={{ base: "140px" }}
-                        src={item.images[0]}
+                        src={`https://res.sastasundar.com/incom/images/product/thumb/${item[11]}`}
                       />
                     )}
                     <Box w={"95%"} m={"auto"}>
@@ -182,7 +169,7 @@ function AllPages({ ep }) {
                         display={"block"}
                         overflow={"hidden"}
                       >
-                        {item.name}
+                        {item[9]}
                       </Text>
                       <Text
                         fontStyle={"italic"}
@@ -190,7 +177,7 @@ function AllPages({ ep }) {
                         color={"#6f7284"}
                         fontSize={12}
                       >
-                        Mkt: {item.manufacturer}
+                        Mkt: {item[0]}
                       </Text>
                       <Flex>
                         <Text fontSize={14} fontWeight={600} color={"#6f7284"}>
@@ -202,27 +189,33 @@ function AllPages({ ep }) {
                           fontWeight={600}
                           fontSize={16}
                         >
-                          Rs. {item.salePriceDecimal}
+                          Rs. {item[38]}
                         </Text>
                       </Flex>
                       <Flex fontSize={12} color={"#6f7284"} fontWeight={400}>
                         <Text>MRP </Text>
                         <Text ml={2} textDecoration={"line-through"}>
-                          {" "}
-                          {item.mrpDecimal}
+                          {"Rs. "}
+                          {item[68]}
                         </Text>
                       </Flex>
-                      <Link to={isAuth ? "/cart" : "/login"}>
-                        <Button
-                          color={"white"}
-                          _hover={{ bg: "teal.400" }}
-                          w={"100%"}
-                          bg={"#24aeb1"}
-                          fontSize={12}
-                        >
-                          ADD TO CART
-                        </Button>
-                      </Link>
+                      {/* <Link to={isAuth ? "/cart" : "/login"}> */}
+                      <Button
+                        onClick={() =>
+                          localStorage.setItem(
+                            "cartCount",
+                            JSON.stringify(item)
+                          )
+                        }
+                        color={"white"}
+                        _hover={{ bg: "teal.400" }}
+                        w={"100%"}
+                        bg={"#24aeb1"}
+                        fontSize={12}
+                      >
+                        ADD TO CART
+                      </Button>
+                      {/* </Link> */}
                     </Box>
                   </GridItem>
                 </Link>
@@ -233,6 +226,6 @@ function AllPages({ ep }) {
       </Flex>
     </Box>
   );
-}
+};
 
-export default AllPages;
+export default APages;

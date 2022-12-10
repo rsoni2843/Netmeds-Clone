@@ -26,7 +26,6 @@ export const getMedicineList = (info) => async (dispatch) => {
       // )
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         dispatch({ type: MEDLIST_SUCCESS, payload: res });
         return res;
       });
@@ -63,7 +62,6 @@ export const getCategory = (info) => (dispatch) => {
     )
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         dispatch({ type: CATEGORY_SUCCESS, payload: res.products });
       });
   } catch (err) {

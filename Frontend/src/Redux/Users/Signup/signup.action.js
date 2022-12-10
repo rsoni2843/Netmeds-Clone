@@ -10,7 +10,8 @@ const signup = (creds) => async (dispatch) => {
   dispatch({ type: SIGN_UP_LOADING });
   try {
     let res = await axios.post(
-      "https://travelgo-rsoni2843.onrender.com/users/signup",
+      "https://heroku-rsoni2843.vercel.app/users/signup",
+      // "https://travelgo-rsoni2843.onrender.com/users/signup",
       // "https://rsoni2843-travelgo.herokuapp.com/users/signup",
       creds
     );

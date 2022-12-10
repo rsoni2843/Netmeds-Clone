@@ -80,6 +80,7 @@ const APages = ({ ep }) => {
                 size={"sm"}
                 fontWeight={400}
                 variant={"subtle"}
+                onClick={asc()}
               >
                 <TagLabel>Low to High</TagLabel>
               </Tag>

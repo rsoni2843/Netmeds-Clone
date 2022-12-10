@@ -8,7 +8,7 @@ app.use(cors());
 app.use("/users", userRouter);
 
 app.get("/", (req, res) => {
-  res.send("Hello World WORKINGG");
+  res.send("Hello World");
 });
 
 app.listen(process.env.PORT || 3000, async () => {

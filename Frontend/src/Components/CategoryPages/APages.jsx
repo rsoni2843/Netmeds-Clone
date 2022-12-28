@@ -80,7 +80,7 @@ const APages = ({ ep }) => {
                 size={"sm"}
                 fontWeight={400}
                 variant={"subtle"}
-                onClick={asc()}
+                // onClick={asc()}
               >
                 <TagLabel>Low to High</TagLabel>
               </Tag>
@@ -126,6 +126,7 @@ const APages = ({ ep }) => {
                   onClick={() =>
                     localStorage.setItem("seeProduct", JSON.stringify(item))
                   }
+                  key={item[8]}
                   to={`/medicine/${item[8]}`}
                 >
                   <GridItem
@@ -133,7 +134,6 @@ const APages = ({ ep }) => {
                     m={"auto"}
                     mt={3}
                     p={2}
-                    key={item[8]}
                     rounded={"lg"}
                     border={"solid 1px rgba(112,112,112,.38)"}
                   >
